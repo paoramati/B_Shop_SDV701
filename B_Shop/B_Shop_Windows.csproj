@@ -59,16 +59,90 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmItem.cs">
+    <Compile Include="BShopModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BShopModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BShopModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BShopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BShopModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BShopModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="clsBranch.cs" />
+    <Compile Include="clsBranchList.cs" />
+    <Compile Include="clsDataAccess.cs" />
+    <Compile Include="clsInventory.cs" />
+    <Compile Include="clsOrder.cs" />
+    <Compile Include="frmClothing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmItem.Designer.cs">
-      <DependentUpon>frmItem.cs</DependentUpon>
+    <Compile Include="frmClothing.Designer.cs">
+      <DependentUpon>frmClothing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFurniture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFurniture.Designer.cs">
+      <DependentUpon>frmFurniture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInventory.Designer.cs">
+      <DependentUpon>frmInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInventoryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInventoryList.Designer.cs">
+      <DependentUpon>frmInventoryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrderList.Designer.cs">
+      <DependentUpon>frmOrderList.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmItem.resx">
-      <DependentUpon>frmItem.cs</DependentUpon>
+    <Compile Include="tblbranch.cs">
+      <DependentUpon>BShopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblinventory.cs">
+      <DependentUpon>BShopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblorder.cs">
+      <DependentUpon>BShopModel.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmClothing.resx">
+      <DependentUpon>frmClothing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFurniture.resx">
+      <DependentUpon>frmFurniture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInventory.resx">
+      <DependentUpon>frmInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInventoryList.resx">
+      <DependentUpon>frmInventoryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOrderList.resx">
+      <DependentUpon>frmOrderList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,6 +153,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="BShopModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BShopModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BShopModel.edmx.diagram">
+      <DependentUpon>BShopModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -91,10 +172,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BShopModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BShopModel.edmx</DependentUpon>
+      <LastGenOutput>BShopModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BShopModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BShopModel.edmx</DependentUpon>
+      <LastGenOutput>BShopModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

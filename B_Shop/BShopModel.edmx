@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="bshopdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblbranch">
+          <Key>
+            <PropertyRef Name="branchID" />
+          </Key>
+          <Property Name="branchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="branchName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="branchAddress" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="branchPhone" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblinventory">
+          <Key>
+            <PropertyRef Name="itemID" />
+          </Key>
+          <Property Name="itemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="pricePerItem" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="lastModified" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="category" Type="enum" Nullable="false" />
+          <Property Name="branchID" Type="int" Nullable="false" />
+          <Property Name="clothingSize" Type="int" />
+          <Property Name="clothingGender" Type="enum" />
+          <Property Name="furnitureWeight" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="furnitureNumParts" Type="int" />
+          <Property Name="rowVersion" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblorders">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="itemID" Type="int" Nullable="false" />
+          <Property Name="priceAtOrder" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="orderDateTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="customerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="customerEmail" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="tblinventory_ibfk_1">
+          <End Role="tblbranch" Type="Self.tblbranch" Multiplicity="1" />
+          <End Role="tblinventory" Type="Self.tblinventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblbranch">
+              <PropertyRef Name="branchID" />
+            </Principal>
+            <Dependent Role="tblinventory">
+              <PropertyRef Name="branchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblorders_ibfk_1">
+          <End Role="tblinventory" Type="Self.tblinventory" Multiplicity="1" />
+          <End Role="tblorders" Type="Self.tblorders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblinventory">
+              <PropertyRef Name="itemID" />
+            </Principal>
+            <Dependent Role="tblorders">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ADD_NEW_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="bshopdb">
+          <Parameter Name="pDescription" Type="varchar" Mode="In" />
+          <Parameter Name="pPrice" Type="decimal" Mode="In" />
+          <Parameter Name="pQuantity" Type="int" Mode="In" />
+          <Parameter Name="pCategory" Type="varchar" Mode="In" />
+          <Parameter Name="pBranchID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CREATE_B_SHOP_DB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="bshopdb" />
+        <EntityContainer Name="bshopdbModelStoreContainer">
+          <EntitySet Name="tblbranch" EntityType="Self.tblbranch" Schema="bshopdb" store:Type="Tables" />
+          <EntitySet Name="tblinventory" EntityType="Self.tblinventory" Schema="bshopdb" store:Type="Tables" />
+          <EntitySet Name="tblorders" EntityType="Self.tblorders" Schema="bshopdb" store:Type="Tables" />
+          <AssociationSet Name="tblinventory_ibfk_1" Association="Self.tblinventory_ibfk_1">
+            <End Role="tblbranch" EntitySet="tblbranch" />
+            <End Role="tblinventory" EntitySet="tblinventory" />
+          </AssociationSet>
+          <AssociationSet Name="tblorders_ibfk_1" Association="Self.tblorders_ibfk_1">
+            <End Role="tblinventory" EntitySet="tblinventory" />
+            <End Role="tblorders" EntitySet="tblorders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bshopdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblbranch">
+          <Key>
+            <PropertyRef Name="branchID" />
+          </Key>
+          <Property Name="branchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="branchName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="branchAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="branchPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblinventories" Relationship="Self.tblinventory_ibfk_1" FromRole="tblbranch" ToRole="tblinventory" />
+        </EntityType>
+        <EntityType Name="tblinventory">
+          <Key>
+            <PropertyRef Name="itemID" />
+          </Key>
+          <Property Name="itemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pricePerItem" Type="Decimal" Nullable="false" />
+          <Property Name="lastModified" Type="DateTime" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="branchID" Type="Int32" Nullable="false" />
+          <Property Name="clothingSize" Type="Int32" />
+          <Property Name="clothingGender" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+          <Property Name="furnitureWeight" Type="Decimal" />
+          <Property Name="furnitureNumParts" Type="Int32" />
+          <Property Name="rowVersion" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="tblbranch" Relationship="Self.tblinventory_ibfk_1" FromRole="tblinventory" ToRole="tblbranch" />
+          <NavigationProperty Name="tblorders" Relationship="Self.tblorders_ibfk_1" FromRole="tblinventory" ToRole="tblorders" />
+        </EntityType>
+        <EntityType Name="tblorder">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="itemID" Type="Int32" Nullable="false" />
+          <Property Name="priceAtOrder" Type="Decimal" Nullable="false" />
+          <Property Name="orderDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="customerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customerEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblinventory" Relationship="Self.tblorders_ibfk_1" FromRole="tblorders" ToRole="tblinventory" />
+        </EntityType>
+        <Association Name="tblinventory_ibfk_1">
+          <End Role="tblbranch" Type="Self.tblbranch" Multiplicity="1" />
+          <End Role="tblinventory" Type="Self.tblinventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblbranch">
+              <PropertyRef Name="branchID" />
+            </Principal>
+            <Dependent Role="tblinventory">
+              <PropertyRef Name="branchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblorders_ibfk_1">
+          <End Role="tblinventory" Type="Self.tblinventory" Multiplicity="1" />
+          <End Role="tblorders" Type="Self.tblorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblinventory">
+              <PropertyRef Name="itemID" />
+            </Principal>
+            <Dependent Role="tblorders">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bshopdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblbranches" EntityType="Self.tblbranch" />
+          <EntitySet Name="tblinventories" EntityType="Self.tblinventory" />
+          <EntitySet Name="tblorders" EntityType="Self.tblorder" />
+          <AssociationSet Name="tblinventory_ibfk_1" Association="Self.tblinventory_ibfk_1">
+            <End Role="tblbranch" EntitySet="tblbranches" />
+            <End Role="tblinventory" EntitySet="tblinventories" />
+          </AssociationSet>
+          <AssociationSet Name="tblorders_ibfk_1" Association="Self.tblorders_ibfk_1">
+            <End Role="tblinventory" EntitySet="tblinventories" />
+            <End Role="tblorders" EntitySet="tblorders" />
+          </AssociationSet>
+          <FunctionImport Name="ADD_NEW_ITEM">
+            <Parameter Name="pDescription" Mode="In" Type="String" />
+            <Parameter Name="pPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="pQuantity" Mode="In" Type="Int32" />
+            <Parameter Name="pCategory" Mode="In" Type="String" />
+            <Parameter Name="pBranchID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CREATE_B_SHOP_DB" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bshopdbModelStoreContainer" CdmEntityContainer="bshopdbEntities">
+          <EntitySetMapping Name="tblbranches">
+            <EntityTypeMapping TypeName="bshopdbModel.tblbranch">
+              <MappingFragment StoreEntitySet="tblbranch">
+                <ScalarProperty Name="branchID" ColumnName="branchID" />
+                <ScalarProperty Name="branchName" ColumnName="branchName" />
+                <ScalarProperty Name="branchAddress" ColumnName="branchAddress" />
+                <ScalarProperty Name="branchPhone" ColumnName="branchPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblinventories">
+            <EntityTypeMapping TypeName="bshopdbModel.tblinventory">
+              <MappingFragment StoreEntitySet="tblinventory">
+                <ScalarProperty Name="itemID" ColumnName="itemID" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="pricePerItem" ColumnName="pricePerItem" />
+                <ScalarProperty Name="lastModified" ColumnName="lastModified" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="branchID" ColumnName="branchID" />
+                <ScalarProperty Name="clothingSize" ColumnName="clothingSize" />
+                <ScalarProperty Name="clothingGender" ColumnName="clothingGender" />
+                <ScalarProperty Name="furnitureWeight" ColumnName="furnitureWeight" />
+                <ScalarProperty Name="furnitureNumParts" ColumnName="furnitureNumParts" />
+                <ScalarProperty Name="rowVersion" ColumnName="rowVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblorders">
+            <EntityTypeMapping TypeName="bshopdbModel.tblorder">
+              <MappingFragment StoreEntitySet="tblorders">
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="itemID" ColumnName="itemID" />
+                <ScalarProperty Name="priceAtOrder" ColumnName="priceAtOrder" />
+                <ScalarProperty Name="orderDateTime" ColumnName="orderDateTime" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="customerEmail" ColumnName="customerEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ADD_NEW_ITEM" FunctionName="bshopdbModel.Store.ADD_NEW_ITEM" />
+          <FunctionImportMapping FunctionImportName="CREATE_B_SHOP_DB" FunctionName="bshopdbModel.Store.CREATE_B_SHOP_DB" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

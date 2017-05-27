@@ -1,10 +1,11 @@
-﻿using System;
+﻿using B_Shop;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace B_Shop
+namespace B_Shop_Windows
 {
     static class Program
     {
@@ -16,7 +17,11 @@ namespace B_Shop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmItem());
+
+            
+
+
+            Application.Run(frmMain.Instance);
         }
     }
 }
