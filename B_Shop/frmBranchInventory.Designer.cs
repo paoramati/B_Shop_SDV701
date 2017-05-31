@@ -1,6 +1,6 @@
 ﻿namespace B_Shop
 {
-    partial class frmInventoryList
+    partial class frmBranchInventory
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,12 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnDeleteInventory = new System.Windows.Forms.Button();
+            this.btnUpdateInventory = new System.Windows.Forms.Button();
+            this.btnAddInventory = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnHome = new System.Windows.Forms.Button();
+            this.lblBranchName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -50,9 +51,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.btnDeleteInventory);
+            this.groupBox1.Controls.Add(this.btnUpdateInventory);
+            this.groupBox1.Controls.Add(this.btnAddInventory);
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Location = new System.Drawing.Point(8, 62);
             this.groupBox1.Name = "groupBox1";
@@ -61,45 +62,46 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Current Inventory";
             // 
-            // button4
+            // btnDeleteInventory
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(489, 333);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(123, 41);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Delete";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnDeleteInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteInventory.Location = new System.Drawing.Point(489, 333);
+            this.btnDeleteInventory.Name = "btnDeleteInventory";
+            this.btnDeleteInventory.Size = new System.Drawing.Size(123, 41);
+            this.btnDeleteInventory.TabIndex = 5;
+            this.btnDeleteInventory.Text = "Delete";
+            this.btnDeleteInventory.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnUpdateInventory
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(489, 269);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(123, 41);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Update";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnUpdateInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateInventory.Location = new System.Drawing.Point(489, 269);
+            this.btnUpdateInventory.Name = "btnUpdateInventory";
+            this.btnUpdateInventory.Size = new System.Drawing.Size(123, 41);
+            this.btnUpdateInventory.TabIndex = 4;
+            this.btnUpdateInventory.Text = "Update";
+            this.btnUpdateInventory.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnAddInventory
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(489, 204);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 41);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Add";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAddInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddInventory.Location = new System.Drawing.Point(489, 204);
+            this.btnAddInventory.Name = "btnAddInventory";
+            this.btnAddInventory.Size = new System.Drawing.Size(123, 41);
+            this.btnAddInventory.TabIndex = 3;
+            this.btnAddInventory.Text = "Add";
+            this.btnAddInventory.UseVisualStyleBackColor = true;
+            this.btnAddInventory.Click += new System.EventHandler(this.btnAddInventory_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(191, 9);
+            this.label1.Location = new System.Drawing.Point(131, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(255, 46);
+            this.label1.Size = new System.Drawing.Size(182, 46);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Inventory List";
+            this.label1.Text = "Inventory";
             // 
             // btnHome
             // 
@@ -112,16 +114,27 @@
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
-            // frmInventoryList
+            // lblBranchName
+            // 
+            this.lblBranchName.AutoSize = true;
+            this.lblBranchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBranchName.Location = new System.Drawing.Point(304, 9);
+            this.lblBranchName.Name = "lblBranchName";
+            this.lblBranchName.Size = new System.Drawing.Size(293, 46);
+            this.lblBranchName.TabIndex = 7;
+            this.lblBranchName.Text = "lblBranchName";
+            // 
+            // frmBranchInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(653, 560);
+            this.Controls.Add(this.lblBranchName);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Name = "frmInventoryList";
-            this.Text = "frmInventoryHome";
+            this.Name = "frmBranchInventory";
+            this.Text = "frmBranchInventory";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -132,10 +145,11 @@
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDeleteInventory;
+        private System.Windows.Forms.Button btnUpdateInventory;
+        private System.Windows.Forms.Button btnAddInventory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnHome;
+        private System.Windows.Forms.Label lblBranchName;
     }
 }

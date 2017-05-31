@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="clsBranch.cs" />
     <Compile Include="pgCategory.xaml.cs">
       <DependentUpon>pgCategory.xaml</DependentUpon>
     </Compile>

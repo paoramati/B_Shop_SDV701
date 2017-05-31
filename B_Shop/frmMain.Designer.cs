@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.btnInventory = new System.Windows.Forms.Button();
+            this.btnGoBranchInventory = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBoxBranch = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGoOrders = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -51,16 +51,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "B Shop - Management Home";
             // 
-            // btnInventory
+            // btnGoBranchInventory
             // 
-            this.btnInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInventory.Location = new System.Drawing.Point(218, 188);
-            this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(185, 54);
-            this.btnInventory.TabIndex = 1;
-            this.btnInventory.Text = "Go";
-            this.btnInventory.UseVisualStyleBackColor = true;
-            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            this.btnGoBranchInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGoBranchInventory.Location = new System.Drawing.Point(218, 188);
+            this.btnGoBranchInventory.Name = "btnGoBranchInventory";
+            this.btnGoBranchInventory.Size = new System.Drawing.Size(185, 54);
+            this.btnGoBranchInventory.TabIndex = 1;
+            this.btnGoBranchInventory.Text = "Go";
+            this.btnGoBranchInventory.UseVisualStyleBackColor = true;
+            this.btnGoBranchInventory.Click += new System.EventHandler(this.btnGoInventory_Click);
             // 
             // label2
             // 
@@ -77,7 +77,7 @@
             this.groupBox1.Controls.Add(this.comboBoxBranch);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.btnInventory);
+            this.groupBox1.Controls.Add(this.btnGoBranchInventory);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 77);
             this.groupBox1.Name = "groupBox1";
@@ -116,7 +116,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.btnGoOrders);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(483, 77);
@@ -126,15 +126,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Orders";
             // 
-            // button1
+            // btnGoOrders
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(52, 109);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(185, 54);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Go";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnGoOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGoOrders.Location = new System.Drawing.Point(52, 109);
+            this.btnGoOrders.Name = "btnGoOrders";
+            this.btnGoOrders.Size = new System.Drawing.Size(185, 54);
+            this.btnGoOrders.TabIndex = 6;
+            this.btnGoOrders.Text = "Go";
+            this.btnGoOrders.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -160,13 +160,13 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnInventory;
+        private System.Windows.Forms.Button btnGoBranchInventory;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBoxBranch;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGoOrders;
     }
 }

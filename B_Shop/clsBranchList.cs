@@ -9,6 +9,8 @@ namespace B_Shop
 {
     class clsBranchList : List<clsBranch>
     {
+        private List<clsBranch> _BranchList;
+
         public clsBranchList()
         {
 
@@ -16,6 +18,7 @@ namespace B_Shop
 
         public List<string> GetBranchNames()
         {
+
             List<string> lcBranchNames = new List<string>();
             using (bshopdbEntities bshop = new bshopdbEntities())
             {

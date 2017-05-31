@@ -15,10 +15,14 @@ namespace B_Shop_Windows
     {
         //singleton
         private static readonly frmMain _Instance = new frmMain();
+        //private clsBranch 
+
+        private string _BranchName;
 
         private frmMain()
         {
             InitializeComponent();
+            _BranchName = (string)comboBoxBranch.SelectedValue;
         }
 
         public static frmMain Instance
@@ -29,20 +33,6 @@ namespace B_Shop_Windows
             }
         }
 
-        private void btnInventory_Click(object sender, EventArgs e)
-        {
-            //frm form2 = new frm();
-            //form2.ShowDialog();
-            //Form2.ActiveForm(); 
-            
-
-
-        }
-
-        private void btnOrders_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -61,18 +51,44 @@ namespace B_Shop_Windows
             //    }
             //}
 
+
+
             clsBranchList lcBranchList = new clsBranchList();
+            comboBoxBranch.DataSource = lcBranchList.GetBranchNames();
 
-            List<string> _BranchList = new List<string>();
-            _BranchList = lcBranchList.GetBranchNames();
 
-            comboBoxBranch.DataSource = _BranchList;        //this displays the branches!!!
+            //this displays the branches!!!
+            //clsBranchList lcBranchList = new clsBranchList();
+            //List<string> _BranchList = new List<string>();
+            //_BranchList = lcBranchList.GetBranchNames();
+            //comboBoxBranch.DataSource = _BranchList;        
 
         }
 
+        //this method may be redundant. See commented instantiation of frmBranchInventory below
         private void comboBoxBranch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string _BranchName = (string)comboBoxBranch.SelectedValue;
+        }
+
+        private void btnGoInventory_Click(object sender, EventArgs e)
+        {
+            new frmBranchInventory((string)comboBoxBranch.SelectedValue);
+            //new frmBranchInventory(_BranchName);
+
+
+            //frm form2 = new frm();
+            //form2.ShowDialog();
+            //Form2.ActiveForm(); 
+
+
+
+        }
+
+        private void btnGoOrders_Click(object sender, EventArgs e)
         {
 
         }
+
     }
 }

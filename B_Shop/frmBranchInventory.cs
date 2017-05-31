@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace B_Shop
 {
-    public partial class frmInventoryList : Form
+    public partial class frmBranchInventory : Form
     {
-        public frmInventoryList()
+        public frmBranchInventory(string prBranchName)
         {
             InitializeComponent();
+            lblBranchName.Text = prBranchName; 
+            //will need to call a method here to discriminate inventory from prBranchName, and only show that
+
+            ShowDialog();
+
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -23,6 +28,11 @@ namespace B_Shop
             //form2.ShowDialog();
             //Form2.ActiveForm(); 
            
+        }
+
+        private void btnAddInventory_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
