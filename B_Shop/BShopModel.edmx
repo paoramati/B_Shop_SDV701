@@ -20,14 +20,14 @@
           </Key>
           <Property Name="itemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="pricePerItem" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="pricePerItem" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="lastModified" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
           <Property Name="category" Type="enum" Nullable="false" />
           <Property Name="branchID" Type="int" Nullable="false" />
           <Property Name="clothingSize" Type="int" />
           <Property Name="clothingGender" Type="enum" />
-          <Property Name="furnitureWeight" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="furnitureWeight" Type="decimal" Precision="5" Scale="2" />
           <Property Name="furnitureNumParts" Type="int" />
           <Property Name="rowVersion" Type="timestamp" Precision="0" Nullable="false" />
         </EntityType>
@@ -37,7 +37,7 @@
           </Key>
           <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="itemID" Type="int" Nullable="false" />
-          <Property Name="priceAtOrder" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="priceAtOrder" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="orderDateTime" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="customerName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="customerEmail" Type="varchar" MaxLength="255" Nullable="false" />
@@ -66,6 +66,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ADD_NEW_CLOTHING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="bshopdb">
+          <Parameter Name="pDescription" Type="varchar" Mode="In" />
+          <Parameter Name="pPrice" Type="decimal" Mode="In" />
+          <Parameter Name="pQuantity" Type="int" Mode="In" />
+          <Parameter Name="pCategory" Type="varchar" Mode="In" />
+          <Parameter Name="pBranchID" Type="int" Mode="In" />
+          <Parameter Name="pSize" Type="int" Mode="In" />
+          <Parameter Name="pGender" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ADD_NEW_FURNITURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="bshopdb">
+          <Parameter Name="pDescription" Type="varchar" Mode="In" />
+          <Parameter Name="pPrice" Type="decimal" Mode="In" />
+          <Parameter Name="pQuantity" Type="int" Mode="In" />
+          <Parameter Name="pCategory" Type="varchar" Mode="In" />
+          <Parameter Name="pBranchID" Type="int" Mode="In" />
+          <Parameter Name="pWeight" Type="decimal" Mode="In" />
+          <Parameter Name="pNumParts" Type="int" Mode="In" />
+        </Function>
         <Function Name="ADD_NEW_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="bshopdb">
           <Parameter Name="pDescription" Type="varchar" Mode="In" />
           <Parameter Name="pPrice" Type="decimal" Mode="In" />
@@ -176,6 +194,24 @@
             <Parameter Name="pBranchID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CREATE_B_SHOP_DB" />
+          <FunctionImport Name="ADD_NEW_CLOTHING">
+            <Parameter Name="pDescription" Mode="In" Type="String" />
+            <Parameter Name="pPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="pQuantity" Mode="In" Type="Int32" />
+            <Parameter Name="pCategory" Mode="In" Type="String" />
+            <Parameter Name="pBranchID" Mode="In" Type="Int32" />
+            <Parameter Name="pSize" Mode="In" Type="Int32" />
+            <Parameter Name="pGender" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ADD_NEW_FURNITURE">
+            <Parameter Name="pDescription" Mode="In" Type="String" />
+            <Parameter Name="pPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="pQuantity" Mode="In" Type="Int32" />
+            <Parameter Name="pCategory" Mode="In" Type="String" />
+            <Parameter Name="pBranchID" Mode="In" Type="Int32" />
+            <Parameter Name="pWeight" Mode="In" Type="Decimal" />
+            <Parameter Name="pNumParts" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -225,6 +261,8 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ADD_NEW_ITEM" FunctionName="bshopdbModel.Store.ADD_NEW_ITEM" />
           <FunctionImportMapping FunctionImportName="CREATE_B_SHOP_DB" FunctionName="bshopdbModel.Store.CREATE_B_SHOP_DB" />
+          <FunctionImportMapping FunctionImportName="ADD_NEW_CLOTHING" FunctionName="bshopdbModel.Store.ADD_NEW_CLOTHING" />
+          <FunctionImportMapping FunctionImportName="ADD_NEW_FURNITURE" FunctionName="bshopdbModel.Store.ADD_NEW_FURNITURE" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

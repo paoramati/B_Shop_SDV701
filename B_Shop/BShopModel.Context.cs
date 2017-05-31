@@ -61,5 +61,71 @@ namespace B_Shop
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CREATE_B_SHOP_DB");
         }
+    
+        public virtual int ADD_NEW_CLOTHING(string pDescription, Nullable<decimal> pPrice, Nullable<int> pQuantity, string pCategory, Nullable<int> pBranchID, Nullable<int> pSize, string pGender)
+        {
+            var pDescriptionParameter = pDescription != null ?
+                new ObjectParameter("pDescription", pDescription) :
+                new ObjectParameter("pDescription", typeof(string));
+    
+            var pPriceParameter = pPrice.HasValue ?
+                new ObjectParameter("pPrice", pPrice) :
+                new ObjectParameter("pPrice", typeof(decimal));
+    
+            var pQuantityParameter = pQuantity.HasValue ?
+                new ObjectParameter("pQuantity", pQuantity) :
+                new ObjectParameter("pQuantity", typeof(int));
+    
+            var pCategoryParameter = pCategory != null ?
+                new ObjectParameter("pCategory", pCategory) :
+                new ObjectParameter("pCategory", typeof(string));
+    
+            var pBranchIDParameter = pBranchID.HasValue ?
+                new ObjectParameter("pBranchID", pBranchID) :
+                new ObjectParameter("pBranchID", typeof(int));
+    
+            var pSizeParameter = pSize.HasValue ?
+                new ObjectParameter("pSize", pSize) :
+                new ObjectParameter("pSize", typeof(int));
+    
+            var pGenderParameter = pGender != null ?
+                new ObjectParameter("pGender", pGender) :
+                new ObjectParameter("pGender", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_NEW_CLOTHING", pDescriptionParameter, pPriceParameter, pQuantityParameter, pCategoryParameter, pBranchIDParameter, pSizeParameter, pGenderParameter);
+        }
+    
+        public virtual int ADD_NEW_FURNITURE(string pDescription, Nullable<decimal> pPrice, Nullable<int> pQuantity, string pCategory, Nullable<int> pBranchID, Nullable<decimal> pWeight, Nullable<int> pNumParts)
+        {
+            var pDescriptionParameter = pDescription != null ?
+                new ObjectParameter("pDescription", pDescription) :
+                new ObjectParameter("pDescription", typeof(string));
+    
+            var pPriceParameter = pPrice.HasValue ?
+                new ObjectParameter("pPrice", pPrice) :
+                new ObjectParameter("pPrice", typeof(decimal));
+    
+            var pQuantityParameter = pQuantity.HasValue ?
+                new ObjectParameter("pQuantity", pQuantity) :
+                new ObjectParameter("pQuantity", typeof(int));
+    
+            var pCategoryParameter = pCategory != null ?
+                new ObjectParameter("pCategory", pCategory) :
+                new ObjectParameter("pCategory", typeof(string));
+    
+            var pBranchIDParameter = pBranchID.HasValue ?
+                new ObjectParameter("pBranchID", pBranchID) :
+                new ObjectParameter("pBranchID", typeof(int));
+    
+            var pWeightParameter = pWeight.HasValue ?
+                new ObjectParameter("pWeight", pWeight) :
+                new ObjectParameter("pWeight", typeof(decimal));
+    
+            var pNumPartsParameter = pNumParts.HasValue ?
+                new ObjectParameter("pNumParts", pNumParts) :
+                new ObjectParameter("pNumParts", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_NEW_FURNITURE", pDescriptionParameter, pPriceParameter, pQuantityParameter, pCategoryParameter, pBranchIDParameter, pWeightParameter, pNumPartsParameter);
+        }
     }
 }

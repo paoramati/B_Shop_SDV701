@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,22 @@ namespace B_Shop
         private void btnAddInventory_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmBranchInventory_Load(object sender, EventArgs e)
+        {
+            using (bshopdbEntities bshop = new bshopdbEntities())
+            {
+                var inventory = bshop.tblinventories.ToList();
+                IQueryable<tblinventory> inventoryQuery = from tblinventory in bshop.tblinventories
+                                                          where tblinventory.branchID == 1
+                                                          select tblinventory;
+
+                dataGridView1.DataSource = inventoryQuery.ToList();
+            }
+
+
+            
         }
     }
 }

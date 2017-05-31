@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B_Shop_Windows", "B_Shop\B_Shop_Windows.csproj", "{E750999E-84A1-483A-AD51-44A0F12F5305}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BShop_Windows", "B_Shop\BShop_Windows.csproj", "{E750999E-84A1-483A-AD51-44A0F12F5305}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BShopUniversal", "BShopUniversal\BShopUniversal.csproj", "{195EE720-E7D7-4230-9458-33B8A42FE03A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "B_Shop", "B_Shop", "{35DCF889-85DF-4183-AFF4-1513F1AE7C85}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BShop", "BShop", "{35DCF889-85DF-4183-AFF4-1513F1AE7C85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BShop_SelfHost", "BShop_SelfHost\BShop_SelfHost.csproj", "{AD1C500D-8A23-4A11-BEE1-A4AB1D01BDD2}"
 EndProject

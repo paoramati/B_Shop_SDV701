@@ -118,7 +118,7 @@
             // 
             this.lblBranchName.AutoSize = true;
             this.lblBranchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBranchName.Location = new System.Drawing.Point(304, 9);
+            this.lblBranchName.Location = new System.Drawing.Point(319, 9);
             this.lblBranchName.Name = "lblBranchName";
             this.lblBranchName.Size = new System.Drawing.Size(293, 46);
             this.lblBranchName.TabIndex = 7;
@@ -135,6 +135,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmBranchInventory";
             this.Text = "frmBranchInventory";
+            this.Load += new System.EventHandler(this.frmBranchInventory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
