@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BShop_SelfHost
+namespace BShop_Management
 {
     public class clsBranch
     {
         public string branchCode { get; set; }
         public string branchAddress { get; set; }
         public string branchPhone { get; set; }
-       // public List<clsInventory> Inventory { get; set; }
+       //public List<clsInventory> Inventory { get; set; }
     }
 
     public class clsInventory

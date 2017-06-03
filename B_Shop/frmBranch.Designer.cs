@@ -1,6 +1,6 @@
-﻿namespace B_Shop
+﻿namespace BShop_Management
 {
-    partial class frmBranchInventory
+    partial class frmBranch
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnDeleteInventory = new System.Windows.Forms.Button();
             this.btnUpdateInventory = new System.Windows.Forms.Button();
@@ -36,25 +35,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnHome = new System.Windows.Forms.Button();
             this.lblBranchName = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.lstBoxInventory = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 21);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(464, 406);
-            this.dataGridView1.TabIndex = 2;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lstBoxInventory);
             this.groupBox1.Controls.Add(this.btnDeleteInventory);
             this.groupBox1.Controls.Add(this.btnUpdateInventory);
             this.groupBox1.Controls.Add(this.btnAddInventory);
-            this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Location = new System.Drawing.Point(8, 62);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(637, 433);
@@ -124,7 +114,16 @@
             this.lblBranchName.TabIndex = 7;
             this.lblBranchName.Text = "lblBranchName";
             // 
-            // frmBranchInventory
+            // lstBoxInventory
+            // 
+            this.lstBoxInventory.FormattingEnabled = true;
+            this.lstBoxInventory.ItemHeight = 16;
+            this.lstBoxInventory.Location = new System.Drawing.Point(6, 21);
+            this.lstBoxInventory.Name = "lstBoxInventory";
+            this.lstBoxInventory.Size = new System.Drawing.Size(449, 388);
+            this.lstBoxInventory.TabIndex = 6;
+            // 
+            // frmBranch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -133,10 +132,9 @@
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Name = "frmBranchInventory";
-            this.Text = "frmBranchInventory";
-            this.Load += new System.EventHandler(this.frmBranchInventory_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Name = "frmBranch";
+            this.Text = "frmBranch";
+            this.Load += new System.EventHandler(this.frmBranch_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -144,7 +142,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnDeleteInventory;
         private System.Windows.Forms.Button btnUpdateInventory;
@@ -152,5 +149,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Label lblBranchName;
+        private System.Windows.Forms.ListBox lstBoxInventory;
     }
 }

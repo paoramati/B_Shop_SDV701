@@ -1,4 +1,4 @@
-﻿namespace B_Shop_Windows
+﻿namespace BShop_Management
 {
     partial class frmMain
     {
@@ -140,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 389);
+            this.ClientSize = new System.Drawing.Size(903, 385);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);

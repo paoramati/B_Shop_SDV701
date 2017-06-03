@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace B_Shop
+namespace BShop_Management
 {
     public partial class frmOrderList : Form
     {

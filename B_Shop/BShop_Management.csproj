@@ -38,6 +38,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -59,26 +63,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BShopModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BShopModel.Context.tt</DependentUpon>
+    <Compile Include="DTO.cs" />
+    <Compile Include="frmBranch.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BShopModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BShopModel.tt</DependentUpon>
+    <Compile Include="frmBranch.Designer.cs">
+      <DependentUpon>frmBranch.cs</DependentUpon>
     </Compile>
-    <Compile Include="BShopModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BShopModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="clsBranch.cs" />
-    <Compile Include="clsBranchList.cs" />
-    <Compile Include="clsDataAccess.cs" />
-    <Compile Include="clsInventory.cs" />
-    <Compile Include="clsOrder.cs" />
     <Compile Include="frmClothing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,12 +87,6 @@
     </Compile>
     <Compile Include="frmInventory.Designer.cs">
       <DependentUpon>frmInventory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmBranchInventory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmBranchInventory.Designer.cs">
-      <DependentUpon>frmBranchInventory.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -123,15 +108,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tblbranch.cs">
-      <DependentUpon>BShopModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblinventory.cs">
-      <DependentUpon>BShopModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblorder.cs">
-      <DependentUpon>BShopModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="ServiceClient.cs" />
+    <EmbeddedResource Include="frmBranch.resx">
+      <DependentUpon>frmBranch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmClothing.resx">
       <DependentUpon>frmClothing.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,9 +120,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInventory.resx">
       <DependentUpon>frmInventory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmBranchInventory.resx">
-      <DependentUpon>frmBranchInventory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -162,13 +139,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="BShopModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BShopModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="BShopModel.edmx.diagram">
-      <DependentUpon>BShopModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -187,18 +157,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="BShopModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BShopModel.edmx</DependentUpon>
-      <LastGenOutput>BShopModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="BShopModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BShopModel.edmx</DependentUpon>
-      <LastGenOutput>BShopModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

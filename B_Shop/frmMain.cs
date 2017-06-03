@@ -1,4 +1,4 @@
-﻿using B_Shop;
+﻿using BShop_Management;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,79 +9,62 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace B_Shop_Windows
+namespace BShop_Management
 {
     public sealed partial class frmMain : Form
-    {
-        //singleton
-        private static readonly frmMain _Instance = new frmMain();
-        //private clsBranch 
+    {  
+        private static readonly frmMain _Instance = new frmMain();   //Singleton
 
-        private string _BranchName;
+        public static frmMain Instance
+        {
+            get { return frmMain._Instance; }
+        }
 
         private frmMain()
         {
             InitializeComponent();
-            _BranchName = (string)comboBoxBranch.SelectedValue;
         }
-
-        public static frmMain Instance
-        {
-            get
-            {
-                return _Instance;
-            }
-        }
-
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //using (bshopdbEntities bshop = new bshopdbEntities())
-            //{
-            //    var _Branches = bshop.tblbranches.ToList();
+            UpdateDisplay();
+        }
 
-            //    foreach (var lcBranch in _Branches)
-            //    {
-            //        clsBranch branch = new clsBranch();
-            //        branch.BranchID = lcBranch.branchID;
-            //        branch.BranchName = lcBranch.branchName;
-            //        branch.BranchAddress = lcBranch.branchAddress;
-            //        branch.BranchPhone = lcBranch.branchPhone;
-            //        //comboBoxBranch.DataSource = branch.BranchName;
-            //    }
-            //}
+        public async void UpdateDisplay()
+        {
+            try
+            {
+                comboBoxBranch.DataSource = null;
+                comboBoxBranch.DataSource = await ServiceClient.GetBranchCodesAsync();
+            }
+            catch
+            {
 
-
-
-            clsBranchList lcBranchList = new clsBranchList();
-            comboBoxBranch.DataSource = lcBranchList.GetBranchNames();
-
-
-            //this displays the branches!!!
-            //clsBranchList lcBranchList = new clsBranchList();
-            //List<string> _BranchList = new List<string>();
-            //_BranchList = lcBranchList.GetBranchNames();
-            //comboBoxBranch.DataSource = _BranchList;        
-
+            }
         }
 
         //this method may be redundant. See commented instantiation of frmBranchInventory below
         private void comboBoxBranch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string _BranchName = (string)comboBoxBranch.SelectedValue;
         }
 
         private void btnGoInventory_Click(object sender, EventArgs e)
         {
-            new frmBranchInventory((string)comboBoxBranch.SelectedValue);
-            //new frmBranchInventory(_BranchName);
+            //new pgPopup(comboBoxBranch.SelectedValue);
+            frmBranch.Run((string)comboBoxBranch.SelectedValue);
 
+            //string lcKey;
 
-            //frm form2 = new frm();
-            //form2.ShowDialog();
-            //Form2.ActiveForm(); 
-
-
+            //lcKey = Convert.ToString(comboBoxBranch.SelectedText as string);
+            //if (lcKey != null)
+            //    try
+            //    {
+            //        frmBranch.Run(comboBoxBranch.SelectedText as string);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "This should never occur");
+            //    }
 
         }
 

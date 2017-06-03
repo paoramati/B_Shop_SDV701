@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace B_Shop_Windows
+namespace BShop_Management
 {
-    public partial class frmFurniture : B_Shop_Windows.frmInventory
+    public partial class frmFurniture : BShop_Management.frmInventory
     {
         public frmFurniture()
         {

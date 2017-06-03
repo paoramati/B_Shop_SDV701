@@ -1,4 +1,4 @@
-﻿namespace B_Shop
+﻿namespace BShop_Management
 {
     partial class pgPopup
     {
