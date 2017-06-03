@@ -29,13 +29,17 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lstBoxInventory = new System.Windows.Forms.ListBox();
             this.btnDeleteInventory = new System.Windows.Forms.Button();
             this.btnUpdateInventory = new System.Windows.Forms.Button();
             this.btnAddInventory = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnHome = new System.Windows.Forms.Button();
-            this.lblBranchName = new System.Windows.Forms.Label();
-            this.lstBoxInventory = new System.Windows.Forms.ListBox();
+            this.lblBranchCode = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblBranchPhone = new System.Windows.Forms.Label();
+            this.lblBranchAddress = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,12 +49,22 @@
             this.groupBox1.Controls.Add(this.btnDeleteInventory);
             this.groupBox1.Controls.Add(this.btnUpdateInventory);
             this.groupBox1.Controls.Add(this.btnAddInventory);
-            this.groupBox1.Location = new System.Drawing.Point(8, 62);
+            this.groupBox1.Location = new System.Drawing.Point(4, 102);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(637, 433);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Current Inventory";
+            // 
+            // lstBoxInventory
+            // 
+            this.lstBoxInventory.FormattingEnabled = true;
+            this.lstBoxInventory.ItemHeight = 16;
+            this.lstBoxInventory.Location = new System.Drawing.Point(6, 21);
+            this.lstBoxInventory.Name = "lstBoxInventory";
+            this.lstBoxInventory.Size = new System.Drawing.Size(449, 388);
+            this.lstBoxInventory.TabIndex = 6;
+            this.lstBoxInventory.DoubleClick += new System.EventHandler(this.lstBoxInventory_DoubleClick);
             // 
             // btnDeleteInventory
             // 
@@ -96,7 +110,7 @@
             // btnHome
             // 
             this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHome.Location = new System.Drawing.Point(262, 505);
+            this.btnHome.Location = new System.Drawing.Point(258, 545);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(106, 43);
             this.btnHome.TabIndex = 6;
@@ -104,31 +118,64 @@
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
-            // lblBranchName
+            // lblBranchCode
             // 
-            this.lblBranchName.AutoSize = true;
-            this.lblBranchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBranchName.Location = new System.Drawing.Point(319, 9);
-            this.lblBranchName.Name = "lblBranchName";
-            this.lblBranchName.Size = new System.Drawing.Size(293, 46);
-            this.lblBranchName.TabIndex = 7;
-            this.lblBranchName.Text = "lblBranchName";
+            this.lblBranchCode.AutoSize = true;
+            this.lblBranchCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBranchCode.Location = new System.Drawing.Point(319, 9);
+            this.lblBranchCode.Name = "lblBranchCode";
+            this.lblBranchCode.Size = new System.Drawing.Size(283, 46);
+            this.lblBranchCode.TabIndex = 7;
+            this.lblBranchCode.Text = "lblBranchCode";
             // 
-            // lstBoxInventory
+            // label6
             // 
-            this.lstBoxInventory.FormattingEnabled = true;
-            this.lstBoxInventory.ItemHeight = 16;
-            this.lstBoxInventory.Location = new System.Drawing.Point(6, 21);
-            this.lstBoxInventory.Name = "lstBoxInventory";
-            this.lstBoxInventory.Size = new System.Drawing.Size(449, 388);
-            this.lstBoxInventory.TabIndex = 6;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(17, 71);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 18);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Address:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(413, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 18);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Phone:";
+            // 
+            // lblBranchPhone
+            // 
+            this.lblBranchPhone.AutoSize = true;
+            this.lblBranchPhone.Location = new System.Drawing.Point(490, 71);
+            this.lblBranchPhone.Name = "lblBranchPhone";
+            this.lblBranchPhone.Size = new System.Drawing.Size(108, 17);
+            this.lblBranchPhone.TabIndex = 10;
+            this.lblBranchPhone.Text = "lblBranchPhone";
+            // 
+            // lblBranchAddress
+            // 
+            this.lblBranchAddress.AutoSize = true;
+            this.lblBranchAddress.Location = new System.Drawing.Point(87, 71);
+            this.lblBranchAddress.Name = "lblBranchAddress";
+            this.lblBranchAddress.Size = new System.Drawing.Size(119, 17);
+            this.lblBranchAddress.TabIndex = 11;
+            this.lblBranchAddress.Text = "lblBranchAddress";
             // 
             // frmBranch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 560);
-            this.Controls.Add(this.lblBranchName);
+            this.ClientSize = new System.Drawing.Size(653, 600);
+            this.Controls.Add(this.lblBranchAddress);
+            this.Controls.Add(this.lblBranchPhone);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblBranchCode);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -148,7 +195,11 @@
         private System.Windows.Forms.Button btnAddInventory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnHome;
-        private System.Windows.Forms.Label lblBranchName;
+        private System.Windows.Forms.Label lblBranchCode;
         private System.Windows.Forms.ListBox lstBoxInventory;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblBranchPhone;
+        private System.Windows.Forms.Label lblBranchAddress;
     }
 }

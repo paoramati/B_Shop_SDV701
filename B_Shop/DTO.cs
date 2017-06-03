@@ -11,7 +11,7 @@ namespace BShop_Management
         public string branchCode { get; set; }
         public string branchAddress { get; set; }
         public string branchPhone { get; set; }
-       //public List<clsInventory> Inventory { get; set; }
+        public List<clsInventory> Inventory { get; set; }
     }
 
     public class clsInventory
@@ -27,11 +27,11 @@ namespace BShop_Management
         public string clothingGender { get; set; }
         public float? furnitureWeight { get; set; }
         public int? furnitureNumParts { get; set; }
-        //public DateTime rowVersion { get; set; }
+        public DateTime rowVersion { get; set; }
 
         public override string ToString()
         {
-            return description + "\t" + lastModified.ToShortDateString();
+            return "ID: " + itemID + "\t Date Added: " + lastModified.ToShortDateString() + "\t" + description;
         }
 
     }

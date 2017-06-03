@@ -30,10 +30,10 @@
         {
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.radioMale = new System.Windows.Forms.RadioButton();
-            this.radioFemale = new System.Windows.Forms.RadioButton();
+            this.radioClothingMale = new System.Windows.Forms.RadioButton();
+            this.radioClothingFemale = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBoxClothingSize = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label7
@@ -56,28 +56,28 @@
             this.label8.TabIndex = 21;
             this.label8.Text = "Gender:";
             // 
-            // radioMale
+            // radioClothingMale
             // 
-            this.radioMale.AutoSize = true;
-            this.radioMale.Checked = true;
-            this.radioMale.Location = new System.Drawing.Point(206, 320);
-            this.radioMale.Name = "radioMale";
-            this.radioMale.Size = new System.Drawing.Size(59, 21);
-            this.radioMale.TabIndex = 22;
-            this.radioMale.TabStop = true;
-            this.radioMale.Text = "Male";
-            this.radioMale.UseVisualStyleBackColor = true;
+            this.radioClothingMale.AutoSize = true;
+            this.radioClothingMale.Checked = true;
+            this.radioClothingMale.Location = new System.Drawing.Point(206, 320);
+            this.radioClothingMale.Name = "radioClothingMale";
+            this.radioClothingMale.Size = new System.Drawing.Size(59, 21);
+            this.radioClothingMale.TabIndex = 22;
+            this.radioClothingMale.TabStop = true;
+            this.radioClothingMale.Text = "Male";
+            this.radioClothingMale.UseVisualStyleBackColor = true;
             // 
-            // radioFemale
+            // radioClothingFemale
             // 
-            this.radioFemale.AutoSize = true;
-            this.radioFemale.Location = new System.Drawing.Point(283, 320);
-            this.radioFemale.Name = "radioFemale";
-            this.radioFemale.Size = new System.Drawing.Size(75, 21);
-            this.radioFemale.TabIndex = 23;
-            this.radioFemale.TabStop = true;
-            this.radioFemale.Text = "Female";
-            this.radioFemale.UseVisualStyleBackColor = true;
+            this.radioClothingFemale.AutoSize = true;
+            this.radioClothingFemale.Location = new System.Drawing.Point(283, 320);
+            this.radioClothingFemale.Name = "radioClothingFemale";
+            this.radioClothingFemale.Size = new System.Drawing.Size(75, 21);
+            this.radioClothingFemale.TabIndex = 23;
+            this.radioClothingFemale.TabStop = true;
+            this.radioClothingFemale.Text = "Female";
+            this.radioClothingFemale.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -89,29 +89,29 @@
             this.label9.TabIndex = 25;
             this.label9.Text = "Clothing";
             // 
-            // textBox1
+            // txtBoxClothingSize
             // 
-            this.textBox1.Location = new System.Drawing.Point(206, 281);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(67, 22);
-            this.textBox1.TabIndex = 24;
+            this.txtBoxClothingSize.Location = new System.Drawing.Point(206, 281);
+            this.txtBoxClothingSize.Name = "txtBoxClothingSize";
+            this.txtBoxClothingSize.Size = new System.Drawing.Size(67, 22);
+            this.txtBoxClothingSize.TabIndex = 24;
             // 
             // frmClothing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.ClientSize = new System.Drawing.Size(473, 473);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.radioFemale);
-            this.Controls.Add(this.radioMale);
+            this.Controls.Add(this.txtBoxClothingSize);
+            this.Controls.Add(this.radioClothingFemale);
+            this.Controls.Add(this.radioClothingMale);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Name = "frmClothing";
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.label8, 0);
-            this.Controls.SetChildIndex(this.radioMale, 0);
-            this.Controls.SetChildIndex(this.radioFemale, 0);
-            this.Controls.SetChildIndex(this.textBox1, 0);
+            this.Controls.SetChildIndex(this.radioClothingMale, 0);
+            this.Controls.SetChildIndex(this.radioClothingFemale, 0);
+            this.Controls.SetChildIndex(this.txtBoxClothingSize, 0);
             this.Controls.SetChildIndex(this.label9, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -122,9 +122,9 @@
 
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.RadioButton radioMale;
-        private System.Windows.Forms.RadioButton radioFemale;
+        private System.Windows.Forms.RadioButton radioClothingMale;
+        private System.Windows.Forms.RadioButton radioClothingFemale;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBoxClothingSize;
     }
 }

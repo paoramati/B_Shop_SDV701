@@ -43,37 +43,16 @@ namespace BShop_SelfHost
                     branchCode = (string)lcResult.Rows[0]["branchCode"],
                     branchAddress = (string)lcResult.Rows[0]["branchAddress"],
                     branchPhone = (string)lcResult.Rows[0]["branchPhone"],
-                    //Inventory = getInventory(prBranchCode)
+                    Inventory = getInventory(branchCode)
                 };
             else
                 return null;
         }
 
-        public clsBranch GetBranchDetails(string branchCode)
+        private List<clsInventory> getInventory(string branchCode)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
-            //branchCode.ToUpper();
-            par.Add("branchCode", branchCode.ToUpper());
-            DataTable lcResult =
-            clsDbConnection.GetDataTable("SELECT * FROM tblBranch WHERE branchCode = @branchCode", par);
-            if (lcResult.Rows.Count > 0)
-                return new clsBranch()
-                {
-                    branchCode = (string)lcResult.Rows[0]["branchCode"],
-                    branchAddress = (string)lcResult.Rows[0]["branchAddress"],
-                    branchPhone = (string)lcResult.Rows[0]["branchPhone"],
-                    //Inventory = getInventory(lcBranchCode)
-                };
-            else
-                return null;
-        }
-
-
-
-        private List<clsInventory> getInventory(string prBranchCode)
-        {
-            Dictionary<string, object> par = new Dictionary<string, object>(1);
-            par.Add("branchCode", prBranchCode);
+            par.Add("branchCode", branchCode);
             DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tblInventory WHERE branchCode = @branchCode", par);
             List<clsInventory> lcInventory = new List<clsInventory>();
             foreach (DataRow dr in lcResult.Rows)
@@ -83,6 +62,7 @@ namespace BShop_SelfHost
 
         private clsInventory dataRow2Inventory(DataRow prDataRow)
         {
+            //return new clsInventory();
             return new clsInventory()
             {
                 itemID = Convert.ToInt32(prDataRow["itemID"]),
@@ -94,8 +74,9 @@ namespace BShop_SelfHost
                 branchCode = Convert.ToString(prDataRow["branchCode"]),
                 clothingSize = prDataRow["clothingSize"] is DBNull ? (int?)null : Convert.ToInt32(prDataRow["clothingSize"]),
                 clothingGender = Convert.ToString(prDataRow["clothingGender"]),
-                furnitureWeight = prDataRow["Weight"] is DBNull ? (float?)null : Convert.ToSingle(prDataRow["furnitureWeight"]),
+                furnitureWeight = prDataRow["furnitureWeight"] is DBNull ? (float?)null : Convert.ToSingle(prDataRow["furnitureWeight"]),
                 furnitureNumParts = prDataRow["furnitureNumParts"] is DBNull ? (int?)null : Convert.ToInt32(prDataRow["furnitureNumParts"]),
+                rowVersion = Convert.ToDateTime(prDataRow["rowVersion"]),
             };
         }
     }

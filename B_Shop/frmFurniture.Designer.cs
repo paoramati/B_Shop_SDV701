@@ -30,10 +30,10 @@
         {
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.updownNumParts = new System.Windows.Forms.NumericUpDown();
+            this.txtBoxFurnitureWeight = new System.Windows.Forms.TextBox();
+            this.updownFurnitureNumParts = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.updownNumParts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.updownFurnitureNumParts)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -56,30 +56,30 @@
             this.label8.TabIndex = 21;
             this.label8.Text = "No# of Parts:";
             // 
-            // textBox1
+            // txtBoxFurnitureWeight
             // 
-            this.textBox1.Location = new System.Drawing.Point(206, 284);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 22;
+            this.txtBoxFurnitureWeight.Location = new System.Drawing.Point(206, 284);
+            this.txtBoxFurnitureWeight.Name = "txtBoxFurnitureWeight";
+            this.txtBoxFurnitureWeight.Size = new System.Drawing.Size(100, 22);
+            this.txtBoxFurnitureWeight.TabIndex = 22;
             // 
-            // updownNumParts
+            // updownFurnitureNumParts
             // 
-            this.updownNumParts.Location = new System.Drawing.Point(206, 323);
-            this.updownNumParts.Maximum = new decimal(new int[] {
+            this.updownFurnitureNumParts.Location = new System.Drawing.Point(206, 323);
+            this.updownFurnitureNumParts.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.updownNumParts.Minimum = new decimal(new int[] {
+            this.updownFurnitureNumParts.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.updownNumParts.Name = "updownNumParts";
-            this.updownNumParts.Size = new System.Drawing.Size(67, 22);
-            this.updownNumParts.TabIndex = 24;
-            this.updownNumParts.Value = new decimal(new int[] {
+            this.updownFurnitureNumParts.Name = "updownFurnitureNumParts";
+            this.updownFurnitureNumParts.Size = new System.Drawing.Size(67, 22);
+            this.updownFurnitureNumParts.TabIndex = 24;
+            this.updownFurnitureNumParts.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -100,17 +100,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.ClientSize = new System.Drawing.Size(473, 473);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.updownNumParts);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.updownFurnitureNumParts);
+            this.Controls.Add(this.txtBoxFurnitureWeight);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Name = "frmFurniture";
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.label8, 0);
-            this.Controls.SetChildIndex(this.textBox1, 0);
-            this.Controls.SetChildIndex(this.updownNumParts, 0);
+            this.Controls.SetChildIndex(this.txtBoxFurnitureWeight, 0);
+            this.Controls.SetChildIndex(this.updownFurnitureNumParts, 0);
             this.Controls.SetChildIndex(this.label9, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.updownNumParts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.updownFurnitureNumParts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,8 +120,8 @@
 
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.NumericUpDown updownNumParts;
+        private System.Windows.Forms.TextBox txtBoxFurnitureWeight;
+        private System.Windows.Forms.NumericUpDown updownFurnitureNumParts;
         private System.Windows.Forms.Label label9;
     }
 }

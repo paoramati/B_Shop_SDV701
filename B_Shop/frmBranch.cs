@@ -24,100 +24,59 @@ namespace BShop_Management
             InitializeComponent();
         }
 
-        //public static void Run(string prBranchCode)
-        //{
-        //    //new pgPopup(prBranchCode);
-        //    frmBranch lcBranchForm;
-        //    lcBranchForm = new frmBranch();
-        //    //lcBranchForm.refreshFormFromDB(prBranchCode);
-            
-        //    lcBranchForm.Show();
-        //    lcBranchForm.Activate();
-        //    //lcBranchForm.refreshFormFromDB(prBranchCode);
-
-            //if (string.IsNullOrEmpty(prBranchCode) || !_BranchFormList.TryGetValue(prBranchCode, out lcBranchForm))
-            //{
-            //    lcBranchForm = new frmBranch();
-            //    if (string.IsNullOrEmpty(prBranchCode))
-            //    {
-            //        //lcBranchForm.SetDetails(new clsBranch());
-            //    }
-
-            //    else
-            //    {
-            //        //_BranchFormList.Add(prBranchCode, lcBranchForm);
-            //        //lcBranchForm.refreshFormFromDB(prBranchCode);
-            //    }
-            //}
-            //else
-            //{
-            //    lcBranchForm.Show();
-            //    lcBranchForm.Activate();
-            //}
-        //}
-
         public static void Run(string prBranchCode)
         {
-            new pgPopup(prBranchCode);
-            frmBranch lcBranchForm = new frmBranch();
-            lcBranchForm.refreshFormFromDB(prBranchCode);
-            lcBranchForm.Show();
-            lcBranchForm.Activate();
-
-            //if (string.IsNullOrEmpty(prBranchCode) ||
-            //!_BranchFormList.TryGetValue(prBranchCode, out lcBranchForm))
-            //{
-            //    lcBranchForm = new frmBranch();
-            //    if (string.IsNullOrEmpty(prBranchCode))
-            //        lcBranchForm.SetDetails(new clsBranch());
-            //    else
-            //    {
-            //        _BranchFormList.Add(prBranchCode, lcBranchForm);
-            //        lcBranchForm.refreshFormFromDB(prBranchCode);
-            //    }
-            //}
-            //else
-            //{
-            //    lcBranchForm.Show();
-            //    lcBranchForm.Activate();
-            //}
+            frmBranch lcBranchForm;
+            if (!_BranchFormList.TryGetValue(prBranchCode, out lcBranchForm))
+            {
+                lcBranchForm = new frmBranch();
+                _BranchFormList.Add(prBranchCode, lcBranchForm);
+                lcBranchForm.refreshFormFromDB(prBranchCode);
+            }
+            else
+            {
+                lcBranchForm.Show();
+                lcBranchForm.Activate();
+            }
         }
 
         private async void refreshFormFromDB(string prBranchCode)
         {
-            SetDetails(await ServiceClient.GetBranchAsync(prBranchCode.ToUpper()));
+            SetDetails(await ServiceClient.GetBranchAsync(prBranchCode));
         }
 
         public void SetDetails(clsBranch prBranch)
         {
             _Branch = prBranch;
-            lblBranchName.Text = _Branch.branchCode;
             UpdateForm();
             UpdateDisplay();
-            //frmMain.Instance.GalleryNameChanged += new frmMain.Notify(updateTitle);
-            //updateTitle(_Artist.ArtistList.GalleryName);
             Show();
-
         }
 
         public void UpdateForm()
         {
-
- //           throw new NotImplementedException();
+            lblBranchCode.Text = _Branch.branchCode;
+            lblBranchAddress.Text = _Branch.branchAddress;
+            lblBranchPhone.Text = _Branch.branchPhone;
         }
 
         private void UpdateDisplay()
         {
             lstBoxInventory.DataSource = null;
-            //lstBoxInventory.DataSource =  _Branch.Inventory;
+            lstBoxInventory.DataSource = _Branch.Inventory;
         }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            //frm form2 = new frm();
-            //form2.ShowDialog();
-            //Form2.ActiveForm(); 
-           
+            try
+            {
+                frmMain.Instance.UpdateDisplay();
+                Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnAddInventory_Click(object sender, EventArgs e)
@@ -127,9 +86,58 @@ namespace BShop_Management
 
         private void frmBranch_Load(object sender, EventArgs e)
         {
- 
 
-            
+
+
+        }
+
+
+
+        private void lstBoxInventory_DoubleClick(object sender, EventArgs e)
+        {
+
+            try
+            {
+                frmInventory.DispatchInventoryForm(lstBoxInventory.SelectedValue as clsInventory);
+                //_WorksList.EditWork(lstWorks.SelectedIndex);
+                UpdateDisplay();
+                frmMain.Instance.UpdateDisplay();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
+
+
+//public static void Run(string prBranchCode)
+//{
+//    //MessageBox.Show(prBranchCode);
+//    frmBranch lcBranchForm = new frmBranch();
+//    lcBranchForm.refreshFormFromDB(prBranchCode);
+//    lcBranchForm.Show();
+//    lcBranchForm.Activate();
+//}
+
+//public static void Run(string prBranchCode)
+//{
+//    frmBranch lcBranchForm;
+//    if (string.IsNullOrEmpty(prBranchCode) || !_BranchFormList.TryGetValue(prBranchCode, out lcBranchForm))
+//    {
+//        lcBranchForm = new frmBranch();
+//        if (string.IsNullOrEmpty(prBranchCode))
+//            lcBranchForm.SetDetails(new clsBranch());
+//        else
+//        {
+//            _BranchFormList.Add(prBranchCode, lcBranchForm);
+//            lcBranchForm.refreshFormFromDB(prBranchCode);
+//        }
+//    }
+//    else
+//    {
+//        lcBranchForm.Show();
+//        lcBranchForm.Activate();
+//    }
+//}
