@@ -7,15 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="B_Shop" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="B_Shop" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="B_Shop_Loaded">
         <FlyoutBase.AttachedFlyout>
             <MenuFlyout/>
         </FlyoutBase.AttachedFlyout>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="B SHOP ONLINE" VerticalAlignment="Top" Height="39" Width="293" FontSize="24"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,54,0,0" TextWrapping="Wrap" Text="Main Menu" VerticalAlignment="Top" Height="92" Width="340" FontFamily="Segoe UI Historic" FontSize="36"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="39,188,0,0" VerticalAlignment="Top" Width="235" Height="33"/>
+        <ComboBox x:Name="comboBoxBranch" HorizontalAlignment="Left" Margin="39,188,0,0" VerticalAlignment="Top" Width="235" Height="33"/>
         <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="39,151,0,0" TextWrapping="Wrap" Text="Pick a Store:" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
         <Button x:Name="button" Content="GO" HorizontalAlignment="Left" Margin="144,249,0,0" VerticalAlignment="Top" Height="41" Width="130" FontWeight="Bold" FontSize="20"/>
+        <TextBlock x:Name="txtBlockMessage" HorizontalAlignment="Left" Margin="20.799,491.903,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="88.195" Width="300.464" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="-0.711"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
 
     </Grid>
 </Page>

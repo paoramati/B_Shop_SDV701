@@ -31,5 +31,17 @@ namespace BShopUniversal
         {
             Frame.Navigate(typeof(pgCategory));
         }
+
+        private async void B_Shop_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                comboBoxBranch.ItemsSource = await ServiceClient.GetBranchCodesAsync();
+            }
+            catch (Exception ex)
+            {
+                txtBlockMessage.Text = (ex.Message);
+            }
+        }
     }
 }
