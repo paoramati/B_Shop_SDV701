@@ -93,7 +93,6 @@
             this.comboBoxBranch.Name = "comboBoxBranch";
             this.comboBoxBranch.Size = new System.Drawing.Size(254, 37);
             this.comboBoxBranch.TabIndex = 5;
-            this.comboBoxBranch.SelectedIndexChanged += new System.EventHandler(this.comboBoxBranch_SelectedIndexChanged);
             // 
             // label4
             // 

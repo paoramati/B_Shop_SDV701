@@ -94,9 +94,30 @@ namespace BShop_Management
 
 
 
-        private void btnDeleteOrder_Click(object sender, EventArgs e)
+        private async void btnDeleteOrder_Click(object sender, EventArgs e)
         {
+            int lcIndex = lstBoxOrder.SelectedIndex;
 
+            if (lcIndex >= 0 && MessageBox.Show("are you sure?", "deleting order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                clsOrder lcOrder = lstBoxOrder.SelectedValue as clsOrder;
+                //clsInventory lcWork = lstBoxInventory.SelectedItem as clsInventory;
+                //MessageBox.Show(lcWork.ArtistName);
+                try
+                {
+                    //MessageBox.Show("test itemID " + lcInventory.itemID);
+                    MessageBox.Show(await ServiceClient.DeleteOrderAsync(lcOrder.orderID));
+
+                    //MessageBox.Show(await ServiceClient.DeleteArtworkAsync(lstWorks.SelectedItem as clsAllWork));
+                    refreshFormFromDB();
+                    //frmBranch.Instance.UpdateDisplay();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
+                }
+
+            }
         }
 
         private void lstBoxOrder_DoubleClick(object sender, EventArgs e)

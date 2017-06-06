@@ -67,57 +67,6 @@ namespace BShop_SelfHost
             };
         }
 
-        public List<clsOrder> GetOrderList()
-        {
-            DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tblOrder", null);
-            List<clsOrder> lcOrder = new List<clsOrder>();
-            foreach (DataRow dr in lcResult.Rows)
-                lcOrder.Add(dataRow2Order(dr));
-            return lcOrder;
-        }
-
-        public clsOrder GetOrder(int orderID)
-        {
-            Dictionary<string, object> par = new Dictionary<string, object>(1);
-            par.Add("orderID", orderID);
-            DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tblOrder WHERE orderID = @orderID", par);
-            if (lcResult.Rows.Count > 0)
-                return dataRow2Order(lcResult.Rows[0]);
-            else
-                return null;
-        }
-
-        private clsOrder dataRow2Order(DataRow prDataRow)
-        {
-            return new clsOrder()
-            {
-                orderID = Convert.ToInt32(prDataRow["orderID"]),
-                itemID = Convert.ToInt32(prDataRow["itemID"]),
-                priceAtOrder = Convert.ToDecimal(prDataRow["priceAtOrder"]),
-                orderQuantity = Convert.ToInt32(prDataRow["orderQuantity"]),
-                orderDateTime = Convert.ToDateTime(prDataRow["orderDateTime"]),
-                customerName = Convert.ToString(prDataRow["customerName"]),
-                customerEmail = Convert.ToString(prDataRow["customerEmail"]),
-            };
-        }
-
-        private Dictionary<string, object> prepareInventoryParameters(clsInventory prInventory)
-        {
-            Dictionary<string, object> par = new Dictionary<string, object>(11);
-            par.Add("itemID", prInventory.itemID);
-            par.Add("description", prInventory.description);
-            par.Add("pricePerItem", prInventory.pricePerItem);
-            par.Add("lastModified", prInventory.lastModified);
-            par.Add("quantity", prInventory.quantity);
-            par.Add("category", prInventory.category);
-            par.Add("branchCode", prInventory.branchCode);
-            par.Add("clothingSize", prInventory.clothingSize);
-            par.Add("clothingGender", prInventory.clothingGender);
-            par.Add("furnitureWeight", prInventory.furnitureWeight);
-            par.Add("furnitureNumParts", prInventory.furnitureNumParts);
-            return par;
-        }
-
         public string PostInventory(clsInventory prInventory)
         { // insert inventory
             try
@@ -157,6 +106,23 @@ namespace BShop_SelfHost
             }
         }
 
+        private Dictionary<string, object> prepareInventoryParameters(clsInventory prInventory)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(11);
+            par.Add("itemID", prInventory.itemID);
+            par.Add("description", prInventory.description);
+            par.Add("pricePerItem", prInventory.pricePerItem);
+            par.Add("lastModified", prInventory.lastModified);
+            par.Add("quantity", prInventory.quantity);
+            par.Add("category", prInventory.category);
+            par.Add("branchCode", prInventory.branchCode);
+            par.Add("clothingSize", prInventory.clothingSize);
+            par.Add("clothingGender", prInventory.clothingGender);
+            par.Add("furnitureWeight", prInventory.furnitureWeight);
+            par.Add("furnitureNumParts", prInventory.furnitureNumParts);
+            return par;
+        }
+
         public string DeleteInventory(int itemID)
         {  // delete inventory
             try
@@ -168,6 +134,108 @@ namespace BShop_SelfHost
                     return "One inventory item has been deleted";
                 else
                     return "Unexpected inventory delete count: " + lcRecCount;
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
+            }
+        }
+
+        public List<clsOrder> GetOrderList()
+        {
+            DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tblOrder", null);
+            List<clsOrder> lcOrder = new List<clsOrder>();
+            foreach (DataRow dr in lcResult.Rows)
+                lcOrder.Add(dataRow2Order(dr));
+            return lcOrder;
+        }
+
+        public clsOrder GetOrder(int orderID)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(1);
+            par.Add("orderID", orderID);
+            DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tblOrder WHERE orderID = @orderID", par);
+            if (lcResult.Rows.Count > 0)
+                return dataRow2Order(lcResult.Rows[0]);
+            else
+                return null;
+        }
+
+        private clsOrder dataRow2Order(DataRow prDataRow)
+        {
+            return new clsOrder()
+            {
+                orderID = Convert.ToInt32(prDataRow["orderID"]),
+                itemID = Convert.ToInt32(prDataRow["itemID"]),
+                priceAtOrder = Convert.ToDecimal(prDataRow["priceAtOrder"]),
+                orderQuantity = Convert.ToInt32(prDataRow["orderQuantity"]),
+                orderDateTime = Convert.ToDateTime(prDataRow["orderDateTime"]),
+                customerName = Convert.ToString(prDataRow["customerName"]),
+                customerEmail = Convert.ToString(prDataRow["customerEmail"]),
+            };
+        }
+
+        public string PostOrder(clsOrder prOrder)
+        { // insert inventory
+            try
+            {
+                int lcRecCount = clsDbConnection.Execute("INSERT INTO tblOrder " +
+                "() " +
+                "VALUES ()",
+                prepareOrderParameters(prOrder));
+                if (lcRecCount == 1)
+                    return "One order item inserted";
+                else
+                    return "Unexpected order insert count: " + lcRecCount;
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
+            }
+        }
+
+        public string PutOrder(clsOrder prOrder)
+        {  // update order
+            try
+            {
+                int lcRecCount = clsDbConnection.Execute("UPDATE tblOrder SET " +
+                    " " +
+                    " " +
+                    "WHERE orderID = @orderID",
+                    prepareOrderParameters(prOrder));
+                if (lcRecCount == 1)
+                    return "One order updated";
+                else
+                    return "Unexpected order update count: " + lcRecCount;
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
+            }
+        }
+
+        private Dictionary<string, object> prepareOrderParameters(clsOrder prOrder)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(11);
+            par.Add("orderID", prOrder.orderID);
+            par.Add("itemID", prOrder.itemID);
+
+            par.Add("orderQuantity", prOrder.orderQuantity);
+
+            return par;
+        }
+
+        public string DeleteOrder(int orderID)
+        {  // delete order
+            try
+            {
+                Dictionary<string, object> par = new Dictionary<string, object>(1);
+                par.Add("orderID", orderID);
+                int lcRecCount = clsDbConnection.Execute("DELETE FROM tblOrder WHERE orderID = @orderID", par);
+                if (lcRecCount == 1)
+                    return "One order has been deleted";
+                else
+                    return "Unexpected order delete count: " + lcRecCount;
             }
             catch (Exception ex)
             {

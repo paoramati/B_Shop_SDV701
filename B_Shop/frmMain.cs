@@ -37,35 +37,15 @@ namespace BShop_Management
                 comboBoxBranch.DataSource = null;
                 comboBoxBranch.DataSource = await ServiceClient.GetBranchCodesAsync();
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
             }
-        }
-
-        //this method may be redundant. See commented instantiation of frmBranchInventory below
-        private void comboBoxBranch_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
 
         private void btnGoInventory_Click(object sender, EventArgs e)
         {
-            //new pgPopup(comboBoxBranch.SelectedValue);
             frmBranch.Run((string)comboBoxBranch.SelectedValue);
-
-            //string lcKey;
-
-            //lcKey = Convert.ToString(comboBoxBranch.SelectedText as string);
-            //if (lcKey != null)
-            //    try
-            //    {
-            //        frmBranch.Run(comboBoxBranch.SelectedText as string);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message, "This should never occur");
-            //    }
-
         }
 
         private void btnGoOrders_Click(object sender, EventArgs e)

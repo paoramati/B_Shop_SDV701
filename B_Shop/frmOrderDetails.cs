@@ -26,19 +26,8 @@ namespace BShop_Management
         {
             //Instance.SetDetails(prOrder);
             frmOrderDetails lcOrderDetailsForm;
-            //if (!_BranchFormList.TryGetValue(prBranchCode, out lcBranchForm))
-            //{
             lcOrderDetailsForm = new frmOrderDetails();
             lcOrderDetailsForm.refreshFormFromDB(prOrder.orderID);
-            //    lcBranchForm = new frmBranch();
-            //    _BranchFormList.Add(prBranchCode, lcBranchForm);
-            //    lcBranchForm.refreshFormFromDB(prBranchCode);
-            ////}
-            //else
-            //{
-            //    lcOrderDetailsForm.Show();
-            //    lcOrderDetailsForm.Activate();
-            ////}
         }
 
         private async void refreshFormFromDB(int prOrderID)
