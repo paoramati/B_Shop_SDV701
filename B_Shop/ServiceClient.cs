@@ -26,20 +26,63 @@ namespace BShop_Management
                         ("http://localhost:60064/api/bshop/GetBranch?branchCode=" + prBranchCode));
         }
 
-        internal async static Task<clsBranch> GetBranchDetailsAsync(string prBranchCode)
-        {
-            using (HttpClient lcHttpClient = new HttpClient())
-                return JsonConvert.DeserializeObject<clsBranch>
-                    (await lcHttpClient.GetStringAsync
-                        ("http://localhost:60064/api/bshop/GetBranchDetails?branchCode=" + prBranchCode));
-        }
 
-        //internal async static Task<clsArtist> GetArtistsAsync(string prArtistName)
+        //internal static async Task<string> DeleteInventoryAsync(int prItemID)
         //{
         //    using (HttpClient lcHttpClient = new HttpClient())
-        //        return JsonConvert.DeserializeObject<clsArtist>
-        //            (await lcHttpClient.GetStringAsync
-        //                ("http://localhost:60064/api/gallery/GetArtist?Name=" + prArtistName));
+        //    {
+        //        HttpResponseMessage lcRespMessage = await lcHttpClient.DeleteAsync
+        //        ($"http://localhost:60064/api/bshop/DeleteInventory?itemID=" + prItemID);     //ArtWork?WorkName={prWork.Name}&ArtistName={prWork.ArtistName}");
+        //        return await lcRespMessage.Content.ReadAsStringAsync();
+        //    }
         //}
+
+        internal async static Task<List<clsOrder>> GetOrderListAsync()
+        {
+            using (HttpClient lcHttpClient = new HttpClient())
+                return JsonConvert.DeserializeObject<List<clsOrder>>
+                    (await lcHttpClient.GetStringAsync
+                        ("http://localhost:60064/api/bshop/GetOrderList/"));
+        }
+
+        internal async static Task<clsOrder> GetOrderAsync(int prOrderID)
+        {
+            using (HttpClient lcHttpClient = new HttpClient())
+                return JsonConvert.DeserializeObject<clsOrder>
+                    (await lcHttpClient.GetStringAsync
+                        ("http://localhost:60064/api/bshop/GetOrder?orderID=" + prOrderID));
+        }
+
+        internal static async Task<string> InsertInventoryAsync(clsInventory prInventory)
+        {
+            return await InsertOrUpdateAsync(prInventory, "http://localhost:60064/api/bshop/PostInventory", "POST");
+        }
+
+        internal static async Task<string> UpdateInventoryAsync(clsInventory prInventory)
+        {
+            return await InsertOrUpdateAsync(prInventory, "http://localhost:60064/api/bshop/PutInventory", "PUT");
+        }
+
+        private async static Task<string> InsertOrUpdateAsync<TItem>(TItem prItem, string prUrl, string prRequest)
+        {
+            using (HttpRequestMessage lcReqMessage = new HttpRequestMessage(new HttpMethod(prRequest), prUrl))
+            using (lcReqMessage.Content =
+            new StringContent(JsonConvert.SerializeObject(prItem), Encoding.Default, "application/json"))
+            using (HttpClient lcHttpClient = new HttpClient())
+            {
+                HttpResponseMessage lcRespMessage = await lcHttpClient.SendAsync(lcReqMessage);
+                return await lcRespMessage.Content.ReadAsStringAsync();
+            }
+        }
+
+        internal static async Task<string> DeleteInventoryAsync(int prItemID)
+        {
+            using (HttpClient lcHttpClient = new HttpClient())
+            {
+                HttpResponseMessage lcRespMessage = await lcHttpClient.DeleteAsync
+                ($"http://localhost:60064/api/bshop/DeleteInventory?itemID=" + prItemID);     //ArtWork?WorkName={prWork.Name}&ArtistName={prWork.ArtistName}");
+                return await lcRespMessage.Content.ReadAsStringAsync();
+            }
+        }
     }
 }

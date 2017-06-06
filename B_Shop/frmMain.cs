@@ -70,7 +70,7 @@ namespace BShop_Management
 
         private void btnGoOrders_Click(object sender, EventArgs e)
         {
-
+            frmOrder.Run();
         }
 
     }

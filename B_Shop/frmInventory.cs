@@ -12,14 +12,16 @@ namespace BShop_Management
 {
     public partial class frmInventory : Form
     {
-        protected clsInventory _InventoryItem;
+        protected clsInventory _Inventory;
+
+        //private List<string> _ValidationErrors;
 
         public frmInventory()
         {
             InitializeComponent();
         }
 
-        public delegate void LoadInventoryFormDelegate(clsInventory prInventoryItem);
+        public delegate void LoadInventoryFormDelegate(clsInventory prInventory);
 
         private static Dictionary<string, Delegate> _InventoryForm = new Dictionary<string, Delegate>
         {
@@ -27,45 +29,81 @@ namespace BShop_Management
             {"Furniture", new LoadInventoryFormDelegate(frmFurniture.Run)},
         };
 
-        public static void DispatchInventoryForm(clsInventory prInventoryItem)
+        public static void DispatchInventoryForm(clsInventory prInventory)
         {
-            _InventoryForm[prInventoryItem.category].DynamicInvoke(prInventoryItem);
+            _InventoryForm[prInventory.category].DynamicInvoke(prInventory);
         }
 
-        public void SetDetails(clsInventory prInventoryItem)
+        public void SetDetails(clsInventory prInventory)
         {
-            _InventoryItem = prInventoryItem;
+            _Inventory = prInventory;
             UpdateForm();
             ShowDialog();
         }
 
         protected virtual void UpdateForm()
         {
-            //txtBoxBranch.Enabled = string.IsNullOrEmpty(_InventoryItem.branchCode);
             txtBoxBranch.Enabled = false;
             txtBoxDateModified.Enabled = false;
 
-            txtBoxDescription.Text = _InventoryItem.description;
-            txtBoxPrice.Text = _InventoryItem.pricePerItem.ToString();
-            txtBoxQuantity.Text = _InventoryItem.quantity.ToString();
-            txtBoxBranch.Text = _InventoryItem.branchCode;
-            txtBoxDateModified.Text = _InventoryItem.lastModified.ToShortDateString();
+            txtBoxDescription.Text = _Inventory.description;
+            txtBoxPrice.Text = _Inventory.pricePerItem.ToString();
+            txtBoxQuantity.Text = _Inventory.quantity.ToString();
+            txtBoxBranch.Text = _Inventory.branchCode;
+            txtBoxDateModified.Text = _Inventory.lastModified.ToShortDateString();
         }
 
         protected virtual void PushData()
         {
-            _InventoryItem.description = txtBoxDescription.Text;
-            _InventoryItem.pricePerItem = decimal.Parse(txtBoxPrice.Text);
-            _InventoryItem.quantity = int.Parse(txtBoxQuantity.Text);
-            _InventoryItem.branchCode = txtBoxBranch.Text;
-            _InventoryItem.lastModified = DateTime.Parse(txtBoxDateModified.Text);
+            _Inventory.description = txtBoxDescription.Text;
+            _Inventory.pricePerItem = decimal.Parse(txtBoxPrice.Text);
+            _Inventory.quantity = int.Parse(txtBoxQuantity.Text);
+            _Inventory.branchCode = txtBoxBranch.Text;
+            _Inventory.lastModified = DateTime.Now;
         }
 
         protected virtual bool IsValid()
         {
+            List<string> lcErrorMsgs = new List<string>();
+
+            if (string.IsNullOrEmpty(txtBoxDescription.Text))
+                return false;
+            if (!clsBShopUtility.CheckDecimalValue(txtBoxPrice.Text))
+                return false;
+            if (!clsBShopUtility.CheckIntValue(txtBoxQuantity.Text))
+                return false;
             return true;
         }
 
+        private async void btnOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IsValid())
+                {
+                    PushData();
+                    if(_Inventory.itemID == 0)      //if item is new
+                        MessageBox.Show(await ServiceClient.InsertInventoryAsync(_Inventory));
+                    else
+                        MessageBox.Show(await ServiceClient.UpdateInventoryAsync(_Inventory));
+                    Close();
+                }
+                else
+                {
+                    //shoot off validation errors, perhaps return focus to first offending input
+                    MessageBox.Show("There are errors with this form");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 
 

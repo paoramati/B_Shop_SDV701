@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace BShop_Management
 {
-    public partial class frmClothing : BShop_Management.frmInventory
+    public sealed partial class frmClothing : BShop_Management.frmInventory
     {
         //Singleton
         public static readonly frmClothing Instance = new frmClothing();
@@ -18,36 +18,43 @@ namespace BShop_Management
             InitializeComponent();
         }
 
-        public static void Run(clsInventory prInventoryItem)
+        public static void Run(clsInventory prInventory)
         {
-            Instance.SetDetails(prInventoryItem);
+            Instance.SetDetails(prInventory);
         }
 
         protected override void UpdateForm()
         {
             base.UpdateForm();
-            txtBoxClothingSize.Text = _InventoryItem.clothingSize.Value.ToString();
-            if (_InventoryItem.clothingGender.Equals("M"))
-                radioClothingMale.Select();
-            else if (_InventoryItem.clothingGender.Equals("F"))
-                radioClothingFemale.Select();
+            txtBoxClothingSize.Text = _Inventory.clothingSize.ToString();
+            switch (_Inventory.clothingGender)
+            {
+                case "M": radioClothingMale.Select(); break;
+                case "F": radioClothingFemale.Select(); break;
+            }
         }
 
         protected override void PushData()
         {
             base.PushData();
-            _InventoryItem.clothingSize = int.Parse(txtBoxClothingSize.Text);
+            _Inventory.clothingSize = int.Parse(txtBoxClothingSize.Text);
             if (radioClothingMale.Checked)
-                _InventoryItem.clothingGender = "M";
+                _Inventory.clothingGender = "M";
             else if (radioClothingFemale.Checked)
-                _InventoryItem.clothingGender = "F";
+                _Inventory.clothingGender = "F";
         }
 
         protected override bool IsValid()
         {
             base.IsValid();
-
+            if (!clsBShopUtility.CheckIntValue(txtBoxClothingSize.Text))
+            {
+                return false;
+            }
+                
             return true;
         }
+
+
     }
 }

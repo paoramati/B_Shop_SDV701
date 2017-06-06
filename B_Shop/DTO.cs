@@ -29,11 +29,25 @@ namespace BShop_Management
         public int? furnitureNumParts { get; set; }
         public DateTime rowVersion { get; set; }
 
+        public static readonly string FACTORY_PROMPT = "Select what type of item to add:";
+
+        private static List<string> itemCategories = new List<string> { "Clothing", "Furniture" };
+
+        public static List<string> ItemCategories
+        {
+            get { return itemCategories; }
+            //set { itemCategories = value; }
+        }
+
         public override string ToString()
         {
             return "ID: " + itemID + "\t Date Added: " + lastModified.ToShortDateString() + "\t" + description;
         }
 
+        public static clsInventory NewInventory(string prItemCategory)
+        {
+            return new clsInventory() { category = prItemCategory };
+        }
     }
 
     public class clsOrder
@@ -41,8 +55,14 @@ namespace BShop_Management
         public int orderID { get; set; }
         public int itemID { get; set; }
         public decimal priceAtOrder { get; set; }
+        public int orderQuantity { get; set; }
         public DateTime orderDateTime { get; set; }
         public string customerName { get; set; }
         public string customerEmail { get; set; }
+
+        public override string ToString()
+        {
+            return "Order No# " + orderID + "\t Date Added: " + orderDateTime.ToShortDateString() + "\t" + customerName;
+        }
     }
 }

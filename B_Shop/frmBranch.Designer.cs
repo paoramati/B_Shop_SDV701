@@ -75,6 +75,7 @@
             this.btnDeleteInventory.TabIndex = 5;
             this.btnDeleteInventory.Text = "Delete";
             this.btnDeleteInventory.UseVisualStyleBackColor = true;
+            this.btnDeleteInventory.Click += new System.EventHandler(this.btnDeleteInventory_Click);
             // 
             // btnUpdateInventory
             // 
@@ -85,6 +86,7 @@
             this.btnUpdateInventory.TabIndex = 4;
             this.btnUpdateInventory.Text = "Update";
             this.btnUpdateInventory.UseVisualStyleBackColor = true;
+            this.btnUpdateInventory.Click += new System.EventHandler(this.btnUpdateInventory_Click);
             // 
             // btnAddInventory
             // 

@@ -10,16 +10,6 @@ namespace BShop_SelfHost
 {
     public class BShopController : ApiController
     {
-        ////get inventory descriptions
-        //public List<string> GetInventoryDescriptions()
-        //{
-        //    DataTable lcResult = clsDbConnection.GetDataTable("SELECT description FROM tblInventory", null);
-        //    List<string> lcNames = new List<string>();
-        //    foreach (DataRow dr in lcResult.Rows)
-        //        lcNames.Add((string)dr[0]);
-        //    return lcNames;
-        //}
-
         public List<string> GetBranchCodes()
         { 
             DataTable lcResult = clsDbConnection.GetDataTable("SELECT branchCode FROM tblBranch", null);
@@ -28,8 +18,6 @@ namespace BShop_SelfHost
                 lcBranchCodes.Add((string)dr[0]);
             return lcBranchCodes;
         }
-
-        
 
         public clsBranch GetBranch(string branchCode)
         {
@@ -62,7 +50,6 @@ namespace BShop_SelfHost
 
         private clsInventory dataRow2Inventory(DataRow prDataRow)
         {
-            //return new clsInventory();
             return new clsInventory()
             {
                 itemID = Convert.ToInt32(prDataRow["itemID"]),
@@ -78,6 +65,114 @@ namespace BShop_SelfHost
                 furnitureNumParts = prDataRow["furnitureNumParts"] is DBNull ? (int?)null : Convert.ToInt32(prDataRow["furnitureNumParts"]),
                 rowVersion = Convert.ToDateTime(prDataRow["rowVersion"]),
             };
+        }
+
+        public List<clsOrder> GetOrderList()
+        {
+            DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tblOrder", null);
+            List<clsOrder> lcOrder = new List<clsOrder>();
+            foreach (DataRow dr in lcResult.Rows)
+                lcOrder.Add(dataRow2Order(dr));
+            return lcOrder;
+        }
+
+        public clsOrder GetOrder(int orderID)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(1);
+            par.Add("orderID", orderID);
+            DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tblOrder WHERE orderID = @orderID", par);
+            if (lcResult.Rows.Count > 0)
+                return dataRow2Order(lcResult.Rows[0]);
+            else
+                return null;
+        }
+
+        private clsOrder dataRow2Order(DataRow prDataRow)
+        {
+            return new clsOrder()
+            {
+                orderID = Convert.ToInt32(prDataRow["orderID"]),
+                itemID = Convert.ToInt32(prDataRow["itemID"]),
+                priceAtOrder = Convert.ToDecimal(prDataRow["priceAtOrder"]),
+                orderQuantity = Convert.ToInt32(prDataRow["orderQuantity"]),
+                orderDateTime = Convert.ToDateTime(prDataRow["orderDateTime"]),
+                customerName = Convert.ToString(prDataRow["customerName"]),
+                customerEmail = Convert.ToString(prDataRow["customerEmail"]),
+            };
+        }
+
+        private Dictionary<string, object> prepareInventoryParameters(clsInventory prInventory)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(11);
+            par.Add("itemID", prInventory.itemID);
+            par.Add("description", prInventory.description);
+            par.Add("pricePerItem", prInventory.pricePerItem);
+            par.Add("lastModified", prInventory.lastModified);
+            par.Add("quantity", prInventory.quantity);
+            par.Add("category", prInventory.category);
+            par.Add("branchCode", prInventory.branchCode);
+            par.Add("clothingSize", prInventory.clothingSize);
+            par.Add("clothingGender", prInventory.clothingGender);
+            par.Add("furnitureWeight", prInventory.furnitureWeight);
+            par.Add("furnitureNumParts", prInventory.furnitureNumParts);
+            return par;
+        }
+
+        public string PostInventory(clsInventory prInventory)
+        { // insert inventory
+            try
+            {
+                int lcRecCount = clsDbConnection.Execute("INSERT INTO tblInventory " +
+                "(description, pricePerItem, quantity, category, branchCode, clothingSize, clothingGender, furnitureWeight, furnitureNumParts) " +
+                "VALUES (@description, @pricePerItem, @quantity, @category, @branchCode, @clothingSize, @clothingGender, @furnitureWeight, @furnitureNumParts)",
+                prepareInventoryParameters(prInventory));
+                if (lcRecCount == 1)
+                    return "One inventory item inserted";
+                else
+                    return "Unexpected inventory insert count: " + lcRecCount;
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
+            }
+        }
+
+        public string PutInventory(clsInventory prInventory)
+        {  // update inventory
+            try
+            {
+                int lcRecCount = clsDbConnection.Execute("UPDATE tblInventory SET " +
+                    "description = @description, pricePerItem = @pricePerItem, lastModified = @lastModified, quantity = @quantity, category = @category, branchCode = @branchCode, " +
+                    "clothingSize = @clothingSize, clothingGender = @clothingGender, furnitureWeight = @furnitureWeight, furnitureNumParts = @furnitureNumParts " + 
+                    "WHERE itemID = @itemID",
+                    prepareInventoryParameters(prInventory));
+                if (lcRecCount == 1)
+                    return "One inventory item updated";
+                else
+                    return "Unexpected inventory update count: " + lcRecCount;
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
+            }
+        }
+
+        public string DeleteInventory(int itemID)
+        {  // delete inventory
+            try
+            {
+                Dictionary<string, object> par = new Dictionary<string, object>(1);
+                par.Add("itemID", itemID);
+                int lcRecCount = clsDbConnection.Execute("DELETE FROM tblInventory WHERE itemID = @itemID", par);
+                if (lcRecCount == 1)
+                    return "One inventory item has been deleted";
+                else
+                    return "Unexpected inventory delete count: " + lcRecCount;
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
+            }
         }
     }
 }

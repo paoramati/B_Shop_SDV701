@@ -135,6 +135,7 @@
             this.btnGoOrders.TabIndex = 6;
             this.btnGoOrders.Text = "Go";
             this.btnGoOrders.UseVisualStyleBackColor = true;
+            this.btnGoOrders.Click += new System.EventHandler(this.btnGoOrders_Click);
             // 
             // frmMain
             // 

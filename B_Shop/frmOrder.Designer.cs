@@ -1,6 +1,6 @@
 ﻿namespace BShop_Management
 {
-    partial class frmOrderList
+    partial class frmOrder
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,10 @@
         {
             this.btnHome = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lstBoxOrder = new System.Windows.Forms.ListBox();
             this.btnDeleteOrder = new System.Windows.Forms.Button();
             this.btnViewOrder = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,26 +58,28 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Order List";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 21);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(464, 406);
-            this.dataGridView1.TabIndex = 2;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lstBoxOrder);
             this.groupBox1.Controls.Add(this.btnDeleteOrder);
             this.groupBox1.Controls.Add(this.btnViewOrder);
-            this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Location = new System.Drawing.Point(12, 58);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(626, 433);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Order History";
+            // 
+            // lstBoxOrder
+            // 
+            this.lstBoxOrder.FormattingEnabled = true;
+            this.lstBoxOrder.ItemHeight = 16;
+            this.lstBoxOrder.Location = new System.Drawing.Point(0, 21);
+            this.lstBoxOrder.Name = "lstBoxOrder";
+            this.lstBoxOrder.Size = new System.Drawing.Size(469, 404);
+            this.lstBoxOrder.TabIndex = 6;
+            this.lstBoxOrder.SelectedIndexChanged += new System.EventHandler(this.lstBoxOrder_SelectedIndexChanged);
+            this.lstBoxOrder.DoubleClick += new System.EventHandler(this.lstBoxOrder_DoubleClick);
             // 
             // btnDeleteOrder
             // 
@@ -89,6 +90,7 @@
             this.btnDeleteOrder.TabIndex = 5;
             this.btnDeleteOrder.Text = "Delete";
             this.btnDeleteOrder.UseVisualStyleBackColor = true;
+            this.btnDeleteOrder.Click += new System.EventHandler(this.btnDeleteOrder_Click);
             // 
             // btnViewOrder
             // 
@@ -100,7 +102,7 @@
             this.btnViewOrder.Text = "View";
             this.btnViewOrder.UseVisualStyleBackColor = true;
             // 
-            // frmOrderList
+            // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -108,9 +110,8 @@
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmOrderList";
-            this.Text = "frmOrderList";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Name = "frmOrder";
+            this.Text = "frmOrder";
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -121,9 +122,9 @@
 
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnDeleteOrder;
         private System.Windows.Forms.Button btnViewOrder;
+        private System.Windows.Forms.ListBox lstBoxOrder;
     }
 }
