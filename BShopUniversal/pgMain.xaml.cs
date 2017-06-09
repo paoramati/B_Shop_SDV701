@@ -27,10 +27,10 @@ namespace BShopUniversal
             this.InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(pgCategory));
-        }
+        //private void button_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
 
         private async void B_Shop_Loaded(object sender, RoutedEventArgs e)
         {
@@ -42,6 +42,17 @@ namespace BShopUniversal
             {
                 txtBlockMessage.Text = (ex.Message);
             }
+        }
+
+
+        private void btnGo_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxBranch.SelectedItem == null)
+                txtBlockMessage.Text = "Please select a store";
+            else
+                Frame.Navigate(typeof(pgBranch), (string)comboBoxBranch.SelectedValue);
+            //            Frame.Navigate(typeof(pgBranch), (string)comboBoxBranch.SelectedValue);
+
         }
     }
 }

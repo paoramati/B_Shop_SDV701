@@ -34,6 +34,8 @@
             this.lstBoxOrder = new System.Windows.Forms.ListBox();
             this.btnDeleteOrder = new System.Windows.Forms.Button();
             this.btnViewOrder = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtOrderTotal = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +62,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtOrderTotal);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.lstBoxOrder);
             this.groupBox1.Controls.Add(this.btnDeleteOrder);
             this.groupBox1.Controls.Add(this.btnViewOrder);
@@ -76,15 +80,14 @@
             this.lstBoxOrder.ItemHeight = 16;
             this.lstBoxOrder.Location = new System.Drawing.Point(0, 21);
             this.lstBoxOrder.Name = "lstBoxOrder";
-            this.lstBoxOrder.Size = new System.Drawing.Size(469, 404);
+            this.lstBoxOrder.Size = new System.Drawing.Size(469, 340);
             this.lstBoxOrder.TabIndex = 6;
-            this.lstBoxOrder.SelectedIndexChanged += new System.EventHandler(this.lstBoxOrder_SelectedIndexChanged);
             this.lstBoxOrder.DoubleClick += new System.EventHandler(this.lstBoxOrder_DoubleClick);
             // 
             // btnDeleteOrder
             // 
             this.btnDeleteOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteOrder.Location = new System.Drawing.Point(489, 333);
+            this.btnDeleteOrder.Location = new System.Drawing.Point(489, 298);
             this.btnDeleteOrder.Name = "btnDeleteOrder";
             this.btnDeleteOrder.Size = new System.Drawing.Size(123, 41);
             this.btnDeleteOrder.TabIndex = 5;
@@ -95,12 +98,28 @@
             // btnViewOrder
             // 
             this.btnViewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewOrder.Location = new System.Drawing.Point(489, 269);
+            this.btnViewOrder.Location = new System.Drawing.Point(489, 227);
             this.btnViewOrder.Name = "btnViewOrder";
             this.btnViewOrder.Size = new System.Drawing.Size(123, 41);
             this.btnViewOrder.TabIndex = 4;
             this.btnViewOrder.Text = "View";
             this.btnViewOrder.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(77, 390);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(147, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Total Order Value ($):";
+            // 
+            // txtOrderTotal
+            // 
+            this.txtOrderTotal.Location = new System.Drawing.Point(227, 387);
+            this.txtOrderTotal.Name = "txtOrderTotal";
+            this.txtOrderTotal.Size = new System.Drawing.Size(155, 22);
+            this.txtOrderTotal.TabIndex = 8;
             // 
             // frmOrder
             // 
@@ -113,6 +132,7 @@
             this.Name = "frmOrder";
             this.Text = "frmOrder";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,5 +146,7 @@
         private System.Windows.Forms.Button btnDeleteOrder;
         private System.Windows.Forms.Button btnViewOrder;
         private System.Windows.Forms.ListBox lstBoxOrder;
+        private System.Windows.Forms.TextBox txtOrderTotal;
+        private System.Windows.Forms.Label label2;
     }
 }

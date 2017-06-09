@@ -14,8 +14,7 @@ namespace BShop_Management
     {
         private List<clsOrder> _OrderList;
 
-        private static Dictionary<int, frmOrder> _OrderFormList =
-            new Dictionary<int, frmOrder>();
+        private decimal _TotalOrderValue;
 
         public frmOrder()
         {
@@ -25,18 +24,9 @@ namespace BShop_Management
         public static void Run()
         {
             frmOrder lcOrderForm = new frmOrder();
-            //if (!_OrderFormList.TryGetValue(prOrderID, out lcOrderForm))
-            //{
-            //    lcOrderForm = new frmOrder();
-            //    _OrderFormList.Add(prOrderID, lcOrderForm);
-            //    lcOrderForm.refreshFormFromDB(prOrderID);
-            //}
-            //else
-            {
-                lcOrderForm.refreshFormFromDB();
-                lcOrderForm.Show();
-                lcOrderForm.Activate();
-            }
+            lcOrderForm.refreshFormFromDB();
+            lcOrderForm.Show();
+            lcOrderForm.Activate();
         }
 
         private async void refreshFormFromDB()
@@ -61,9 +51,11 @@ namespace BShop_Management
 
         public void UpdateForm()
         {
-            //lblBranchCode.Text = _Branch.branchCode;
-            //lblBranchAddress.Text = _Branch.branchAddress;
-            //lblBranchPhone.Text = _Branch.branchPhone;
+            _TotalOrderValue = 0;
+            foreach (clsOrder lcOrder in _OrderList)
+                _TotalOrderValue += (lcOrder.priceAtOrder * lcOrder.orderQuantity);
+            txtOrderTotal.Enabled = false;
+            txtOrderTotal.Text = _TotalOrderValue.ToString();
         }
 
         private void UpdateDisplay()
@@ -71,8 +63,6 @@ namespace BShop_Management
             lstBoxOrder.DataSource = null;
             lstBoxOrder.DataSource = _OrderList.ToList();
         }
-
-
 
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -87,12 +77,10 @@ namespace BShop_Management
             }
         }
 
-        private void lstBoxOrder_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstBoxOrder_DoubleClick(object sender, EventArgs e)
         {
-            
+            frmOrderDetails.Run(lstBoxOrder.SelectedItem as clsOrder);
         }
-
-
 
         private async void btnDeleteOrder_Click(object sender, EventArgs e)
         {
@@ -100,17 +88,11 @@ namespace BShop_Management
 
             if (lcIndex >= 0 && MessageBox.Show("are you sure?", "deleting order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                clsOrder lcOrder = lstBoxOrder.SelectedValue as clsOrder;
-                //clsInventory lcWork = lstBoxInventory.SelectedItem as clsInventory;
-                //MessageBox.Show(lcWork.ArtistName);
                 try
                 {
-                    //MessageBox.Show("test itemID " + lcInventory.itemID);
+                    clsOrder lcOrder = lstBoxOrder.SelectedValue as clsOrder;
                     MessageBox.Show(await ServiceClient.DeleteOrderAsync(lcOrder.orderID));
-
-                    //MessageBox.Show(await ServiceClient.DeleteArtworkAsync(lstWorks.SelectedItem as clsAllWork));
                     refreshFormFromDB();
-                    //frmBranch.Instance.UpdateDisplay();
                 }
                 catch (Exception ex)
                 {
@@ -120,9 +102,6 @@ namespace BShop_Management
             }
         }
 
-        private void lstBoxOrder_DoubleClick(object sender, EventArgs e)
-        {
-            frmOrderDetails.Run(lstBoxOrder.SelectedItem as clsOrder);
-        }
+
     }
 }

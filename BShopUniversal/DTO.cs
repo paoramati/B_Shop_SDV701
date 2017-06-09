@@ -41,7 +41,7 @@ namespace BShopUniversal
 
         public override string ToString()
         {
-            return "ID: " + itemID + "\t Date Added: " + lastModified.ToString("d") + "\t" + description;
+            return description + " (" + quantity + " available)";
         }
 
         public static clsInventory NewInventory(string prItemCategory)

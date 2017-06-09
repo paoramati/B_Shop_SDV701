@@ -20,21 +20,40 @@ namespace BShopUniversal
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class pgCategory : Page
+    public sealed partial class pgItemDetail : Page
     {
-        public pgCategory()
+        private clsInventory _Inventory;
+
+        private clsOrder _Order;
+
+        public pgItemDetail()
         {
             this.InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Frame.Navigate(typeof(pgInventory));
+            base.OnNavigatedTo(e);
+            UpdatePage(e.Parameter as clsInventory);
+            if (e.Parameter != null)
+            {
+
+            }
         }
 
-        private void button_Copy_Click(object sender, RoutedEventArgs e)
+        private void UpdatePage(clsInventory prInventory)
         {
-            Frame.Navigate(typeof(pgMain));
+            _Inventory = prInventory;
+            lblDescription.Text = _Inventory.description;
+            txtPrice.Text = _Inventory.pricePerItem.ToString();
+            txtStockQuantity.Text = _Inventory.quantity.ToString();
+            txtCategory.Text = _Inventory.category;
         }
+
+        private void SavePage()
+        {
+
+        }
+
     }
 }
