@@ -99,7 +99,7 @@
             // frmClothing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(473, 473);
+            this.ClientSize = new System.Drawing.Size(653, 473);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtBoxClothingSize);
             this.Controls.Add(this.radioClothingFemale);

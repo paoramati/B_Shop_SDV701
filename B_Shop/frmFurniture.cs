@@ -40,12 +40,20 @@ namespace BShop_Management
 
         protected override bool IsValid()
         {
-            base.IsValid();
+            bool lcValid = true;
+            if (!base.IsValid())
+                lcValid = false;
             if (!clsBShopUtility.CheckFloatValue(txtBoxFurnitureWeight.Text))
-                return false;
+            {
+                _ValidationErrors.Add("Furniture weight must be a number greater than 0");
+                lcValid = false;
+            }
             if (!clsBShopUtility.CheckIntValue(updownFurnitureNumParts.Value.ToString()))
-                return false;
-            return true;
+            {
+                _ValidationErrors.Add("Furniture parts must be a number greater than 0");
+                lcValid = false;
+            }
+            return lcValid;
         }
     }
 }

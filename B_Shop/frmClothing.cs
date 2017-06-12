@@ -46,12 +46,13 @@ namespace BShop_Management
 
         protected override bool IsValid()
         {
-            base.IsValid();
-            if (!clsBShopUtility.CheckIntValue(txtBoxClothingSize.Text))
-            {
+            if (!base.IsValid())
                 return false;
+            else
+            {
+                if (!clsBShopUtility.CheckIntValue(txtBoxClothingSize.Text))
+                    return false;
             }
-                
             return true;
         }
 

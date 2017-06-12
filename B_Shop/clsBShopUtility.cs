@@ -10,55 +10,67 @@ namespace BShop_Management
     {
         public static bool CheckDecimalValue(string value)
         {
+            decimal lcResult;
             if (string.IsNullOrEmpty(value))
                 return false;
-            decimal lcResult;
             if (!decimal.TryParse(value, out lcResult))
+            {
                 return false;
+            }
+                
             else
+            {
                 if (lcResult < 0)
-                return false;
+                    return false;
+            }
             return true;
         }
 
         public static bool CheckIntValue(string value)
         {
+            int lcResult;
             if (string.IsNullOrEmpty(value))
                 return false;
-            int lcResult;
+            //bool result = int.TryParse(value, out lcResult);
             if (!int.TryParse(value, out lcResult))
                 return false;
             else
+            {
                 if (lcResult < 0)
-                return false;
+                    return false;
+            }  
             return true;
         }
 
         public static bool CheckFloatValue(string value)
         {
+            float lcResult;
             if (string.IsNullOrEmpty(value))
                 return false;
-            float lcResult;
             if (!float.TryParse(value, out lcResult))
                 return false;
             else
+            {
                 if (lcResult < 0)
-                return false;
+                    return false;
+            }
             return true;
         }
 
-        
+
 
         public static bool CheckDateTimeValue(string value)
         {
+            decimal lcResult;
             if (string.IsNullOrEmpty(value))
                 return false;
-            decimal lcResult;
             if (!decimal.TryParse(value, out lcResult))
                 return false;
             else
+            {
                 if (lcResult < 0)
-                return false;
+                    return false;
+            }
             return true;
         }
 

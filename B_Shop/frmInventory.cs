@@ -14,7 +14,7 @@ namespace BShop_Management
     {
         protected clsInventory _Inventory;
 
-        //private List<string> _ValidationErrors;
+        protected List<string> _ValidationErrors;
 
         public frmInventory()
         {
@@ -43,6 +43,8 @@ namespace BShop_Management
 
         protected virtual void UpdateForm()
         {
+            //_ValidationErrors.Clear();
+            _ValidationErrors = new List<string>();
             txtBoxBranch.Enabled = false;
             txtBoxDateModified.Enabled = false;
 
@@ -62,21 +64,9 @@ namespace BShop_Management
             _Inventory.lastModified = DateTime.Now;
         }
 
-        protected virtual bool IsValid()
-        {
-            List<string> lcErrorMsgs = new List<string>();
-
-            if (string.IsNullOrEmpty(txtBoxDescription.Text))
-                return false;
-            if (!clsBShopUtility.CheckDecimalValue(txtBoxPrice.Text))
-                return false;
-            if (!clsBShopUtility.CheckIntValue(txtBoxQuantity.Text))
-                return false;
-            return true;
-        }
-
         private async void btnOK_Click(object sender, EventArgs e)
         {
+            _ValidationErrors.Clear();
             try
             {
                 if (IsValid())
@@ -90,8 +80,10 @@ namespace BShop_Management
                 }
                 else
                 {
+
                     //shoot off validation errors, perhaps return focus to first offending input
-                    MessageBox.Show("There are errors with this form");
+                    //MessageBox.Show("There are errors with this form");
+                    MessageBox.Show(String.Join("\n", _ValidationErrors));
                 }
             }
             catch (Exception ex)
@@ -103,6 +95,27 @@ namespace BShop_Management
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        protected virtual bool IsValid()
+        {
+            bool lcResult = true;
+            if (string.IsNullOrEmpty(txtBoxDescription.Text))
+            {
+                _ValidationErrors.Add("Description must not be empty");
+                lcResult = false;
+            }
+            if (!clsBShopUtility.CheckDecimalValue(txtBoxPrice.Text))
+            {
+                _ValidationErrors.Add("Price must be a number greater than 0");
+                lcResult = false;
+            }
+            if (!clsBShopUtility.CheckIntValue(txtBoxQuantity.Text))
+            {
+                _ValidationErrors.Add("Quantity must be a number greater than 0");
+                lcResult = false;
+            }
+            return lcResult;
         }
     }
 

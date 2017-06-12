@@ -54,6 +54,7 @@ namespace BShop_Management
     {
         public int orderID { get; set; }
         public int itemID { get; set; }
+        public string description { get; set; }
         public decimal priceAtOrder { get; set; }
         public int orderQuantity { get; set; }
         public DateTime orderDateTime { get; set; }

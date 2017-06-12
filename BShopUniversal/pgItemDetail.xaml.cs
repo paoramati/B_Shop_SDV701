@@ -55,5 +55,15 @@ namespace BShopUniversal
 
         }
 
+        private void CreateOrder()
+        {
+
+        }
+
+        private bool IsValid()
+        {
+            return true;
+        }
+
     }
 }

@@ -39,7 +39,7 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.txtOrderID = new System.Windows.Forms.TextBox();
             this.txtOrderDate = new System.Windows.Forms.TextBox();
-            this.txtItemID = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.txtPriceAtOrder = new System.Windows.Forms.TextBox();
             this.txtOrderQuantity = new System.Windows.Forms.TextBox();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
@@ -70,9 +70,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(26, 134);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 17);
+            this.label3.Size = new System.Drawing.Size(113, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Item ID:";
+            this.label3.Text = "Item Description:";
             // 
             // label4
             // 
@@ -143,16 +143,16 @@
             this.txtOrderDate.Size = new System.Drawing.Size(148, 22);
             this.txtOrderDate.TabIndex = 10;
             // 
-            // txtItemID
+            // txtDescription
             // 
-            this.txtItemID.Location = new System.Drawing.Point(175, 129);
-            this.txtItemID.Name = "txtItemID";
-            this.txtItemID.Size = new System.Drawing.Size(100, 22);
-            this.txtItemID.TabIndex = 11;
+            this.txtDescription.Location = new System.Drawing.Point(175, 129);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(209, 22);
+            this.txtDescription.TabIndex = 11;
             // 
             // txtPriceAtOrder
             // 
-            this.txtPriceAtOrder.Location = new System.Drawing.Point(175, 170);
+            this.txtPriceAtOrder.Location = new System.Drawing.Point(175, 171);
             this.txtPriceAtOrder.Name = "txtPriceAtOrder";
             this.txtPriceAtOrder.Size = new System.Drawing.Size(100, 22);
             this.txtPriceAtOrder.TabIndex = 12;
@@ -187,7 +187,7 @@
             this.Controls.Add(this.txtCustomerName);
             this.Controls.Add(this.txtOrderQuantity);
             this.Controls.Add(this.txtPriceAtOrder);
-            this.Controls.Add(this.txtItemID);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtOrderDate);
             this.Controls.Add(this.txtOrderID);
             this.Controls.Add(this.btnBack);
@@ -219,7 +219,7 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.TextBox txtOrderID;
         private System.Windows.Forms.TextBox txtOrderDate;
-        private System.Windows.Forms.TextBox txtItemID;
+        private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtPriceAtOrder;
         private System.Windows.Forms.TextBox txtOrderQuantity;
         private System.Windows.Forms.TextBox txtCustomerName;

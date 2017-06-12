@@ -52,7 +52,7 @@ namespace BShop_Management
         private void UpdateForm()
         {
             txtOrderID.Enabled = false;
-            txtItemID.Enabled = false;
+            txtDescription.Enabled = false;
             txtCustomerName.Enabled = false;
             txtCustomerEmail.Enabled = false;
             txtOrderQuantity.Enabled = false;
@@ -60,7 +60,7 @@ namespace BShop_Management
             txtOrderDate.Enabled = false;
 
             txtOrderID.Text = _Order.orderID.ToString();
-            txtItemID.Text = _Order.itemID.ToString();
+            txtDescription.Text = _Order.description;
             txtOrderDate.Text = _Order.orderDateTime.ToString();
             txtOrderQuantity.Text = _Order.orderQuantity.ToString();
             txtPriceAtOrder.Text = _Order.priceAtOrder.ToString();

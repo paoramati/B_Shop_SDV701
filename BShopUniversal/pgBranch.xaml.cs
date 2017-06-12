@@ -65,17 +65,17 @@ namespace BShopUniversal
             lstBoxInventory.ItemsSource = _Branch.Inventory.ToList();
         }
 
-        private void lstBoxInventory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
             if (lstBoxInventory.SelectedItem == null)
                 txtBlockMsg.Text = "Please select an item";
             else
                 Frame.Navigate(typeof(pgItemDetail), (clsInventory)lstBoxInventory.SelectedValue);
+        }
+
+        private void lstBoxInventory_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(pgItemDetail), (clsInventory)lstBoxInventory.SelectedValue);
         }
     }
 }

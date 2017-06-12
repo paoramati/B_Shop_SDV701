@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace BShop_Management
 {
     class ServiceClient
@@ -52,15 +51,15 @@ namespace BShop_Management
             return await InsertOrUpdateAsync(prInventory, "http://localhost:60064/api/bshop/PutInventory", "PUT");
         }
 
-        //internal static async Task<string> InsertOrderAsync(clsOrder prOrder)
-        //{
-        //    return await InsertOrUpdateAsync(prOrder, "http://localhost:60064/api/bshop/PostInventory", "POST");
-        //}
+        internal static async Task<string> InsertOrderAsync(clsOrder prOrder)
+        {
+            return await InsertOrUpdateAsync(prOrder, "http://localhost:60064/api/bshop/PostInventory", "POST");
+        }
 
-        //internal static async Task<string> UpdateOrderAsync(clsOrder prOrder)
-        //{
-        //    return await InsertOrUpdateAsync(prOrder, "http://localhost:60064/api/bshop/PutInventory", "PUT");
-        //}
+        internal static async Task<string> UpdateOrderAsync(clsOrder prOrder)
+        {
+            return await InsertOrUpdateAsync(prOrder, "http://localhost:60064/api/bshop/PutInventory", "PUT");
+        }
 
         private async static Task<string> InsertOrUpdateAsync<TItem>(TItem prItem, string prUrl, string prRequest)
         {

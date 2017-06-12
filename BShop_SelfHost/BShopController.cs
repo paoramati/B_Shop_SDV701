@@ -143,7 +143,8 @@ namespace BShop_SelfHost
 
         public List<clsOrder> GetOrderList()
         {
-            DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tblOrder", null);
+            DataTable lcResult = clsDbConnection.GetDataTable("SELECT tblInventory.description, tblOrder.* FROM tblInventory JOIN tblOrder " +
+                "ON tblInventory.itemID = tblOrder.itemID", null);
             List<clsOrder> lcOrder = new List<clsOrder>();
             foreach (DataRow dr in lcResult.Rows)
                 lcOrder.Add(dataRow2Order(dr));
@@ -154,7 +155,8 @@ namespace BShop_SelfHost
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
             par.Add("orderID", orderID);
-            DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tblOrder WHERE orderID = @orderID", par);
+            DataTable lcResult = clsDbConnection.GetDataTable("SELECT tblInventory.description, tblOrder.* FROM tblInventory JOIN tblOrder " +
+                "ON tblInventory.itemID = tblOrder.itemID WHERE tblOrder.orderID = @orderID", par);
             if (lcResult.Rows.Count > 0)
                 return dataRow2Order(lcResult.Rows[0]);
             else
@@ -167,6 +169,7 @@ namespace BShop_SelfHost
             {
                 orderID = Convert.ToInt32(prDataRow["orderID"]),
                 itemID = Convert.ToInt32(prDataRow["itemID"]),
+                description = Convert.ToString(prDataRow["description"]),
                 priceAtOrder = Convert.ToDecimal(prDataRow["priceAtOrder"]),
                 orderQuantity = Convert.ToInt32(prDataRow["orderQuantity"]),
                 orderDateTime = Convert.ToDateTime(prDataRow["orderDateTime"]),

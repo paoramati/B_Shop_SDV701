@@ -88,6 +88,7 @@
             // 
             // comboBoxBranch
             // 
+            this.comboBoxBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxBranch.FormattingEnabled = true;
             this.comboBoxBranch.Location = new System.Drawing.Point(149, 121);
             this.comboBoxBranch.Name = "comboBoxBranch";
