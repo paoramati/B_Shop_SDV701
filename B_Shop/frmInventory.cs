@@ -37,14 +37,13 @@ namespace BShop_Management
         public void SetDetails(clsInventory prInventory)
         {
             _Inventory = prInventory;
+            _ValidationErrors = new List<string>();
             UpdateForm();
             ShowDialog();
         }
 
         protected virtual void UpdateForm()
         {
-            //_ValidationErrors.Clear();
-            _ValidationErrors = new List<string>();
             txtBoxBranch.Enabled = false;
             txtBoxDateModified.Enabled = false;
 
@@ -66,9 +65,9 @@ namespace BShop_Management
 
         private async void btnOK_Click(object sender, EventArgs e)
         {
-            _ValidationErrors.Clear();
             try
             {
+                _ValidationErrors.Clear();
                 if (IsValid())
                 {
                     PushData();
@@ -80,10 +79,7 @@ namespace BShop_Management
                 }
                 else
                 {
-
-                    //shoot off validation errors, perhaps return focus to first offending input
-                    //MessageBox.Show("There are errors with this form");
-                    MessageBox.Show(String.Join("\n", _ValidationErrors));
+                    MessageBox.Show(String.Join("\n", _ValidationErrors), "There are errors with this form:");
                 }
             }
             catch (Exception ex)
@@ -107,10 +103,10 @@ namespace BShop_Management
             }
             if (!clsBShopUtility.CheckDecimalValue(txtBoxPrice.Text))
             {
-                _ValidationErrors.Add("Price must be a number greater than 0");
+                _ValidationErrors.Add("Price must be a number greater 0");
                 lcResult = false;
             }
-            if (!clsBShopUtility.CheckIntValue(txtBoxQuantity.Text))
+            if (!clsBShopUtility.CheckIntValue(txtBoxQuantity.Text, 0))
             {
                 _ValidationErrors.Add("Quantity must be a number greater than 0");
                 lcResult = false;

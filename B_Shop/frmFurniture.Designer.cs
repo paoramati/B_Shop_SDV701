@@ -98,7 +98,7 @@
             // frmFurniture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(688, 473);
+            this.ClientSize = new System.Drawing.Size(463, 473);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.updownFurnitureNumParts);
             this.Controls.Add(this.txtBoxFurnitureWeight);

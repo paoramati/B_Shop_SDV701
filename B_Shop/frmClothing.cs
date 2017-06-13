@@ -46,16 +46,15 @@ namespace BShop_Management
 
         protected override bool IsValid()
         {
+            bool lcValid = true;
             if (!base.IsValid())
-                return false;
-            else
+                lcValid = false;
+            if (!clsBShopUtility.CheckIntValue(txtBoxClothingSize.Text))
             {
-                if (!clsBShopUtility.CheckIntValue(txtBoxClothingSize.Text))
-                    return false;
+                _ValidationErrors.Add("Clothing size must be a number greater than or equal to 0");
+                lcValid = false;
             }
-            return true;
+            return lcValid; 
         }
-
-
     }
 }

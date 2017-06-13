@@ -51,8 +51,6 @@ namespace BShopUniversal
                 txtBlockMessage.Text = "Please select a store";
             else
                 Frame.Navigate(typeof(pgBranch), (string)comboBoxBranch.SelectedValue);
-            //            Frame.Navigate(typeof(pgBranch), (string)comboBoxBranch.SelectedValue);
-
         }
     }
 }

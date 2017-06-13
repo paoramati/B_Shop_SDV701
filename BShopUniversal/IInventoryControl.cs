@@ -8,7 +8,7 @@ namespace BShopUniversal
 {
     interface IInventoryControl
     {
-        void PushData(clsInventory prInventory);
+        //void PushData(clsInventory prInventory);
         void UpdateControl(clsInventory prInventory);
     }
 }

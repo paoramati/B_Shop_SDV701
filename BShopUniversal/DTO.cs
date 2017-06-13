@@ -41,7 +41,7 @@ namespace BShopUniversal
 
         public override string ToString()
         {
-            return description + " (" + quantity + " available)";
+            return "(" + category.Substring(0,3).ToUpper() + ")" + " " + description;
         }
 
         public static clsInventory NewInventory(string prItemCategory)

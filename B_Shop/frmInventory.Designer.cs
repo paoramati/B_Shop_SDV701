@@ -41,7 +41,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblErrors = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -159,22 +158,11 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Description:";
             // 
-            // lblErrors
-            // 
-            this.lblErrors.AutoSize = true;
-            this.lblErrors.ForeColor = System.Drawing.Color.Red;
-            this.lblErrors.Location = new System.Drawing.Point(485, 84);
-            this.lblErrors.Name = "lblErrors";
-            this.lblErrors.Size = new System.Drawing.Size(61, 17);
-            this.lblErrors.TabIndex = 20;
-            this.lblErrors.Text = "lblErrors";
-            // 
             // frmInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 473);
-            this.Controls.Add(this.lblErrors);
+            this.ClientSize = new System.Drawing.Size(475, 473);
             this.Controls.Add(this.txtBoxDateModified);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtBoxBranch);
@@ -210,6 +198,5 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblErrors;
     }
 }
