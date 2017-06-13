@@ -53,12 +53,12 @@ namespace BShopUniversal
 
         internal static async Task<string> InsertOrderAsync(clsOrder prOrder)
         {
-            return await InsertOrUpdateAsync(prOrder, "http://localhost:60064/api/bshop/PostInventory", "POST");
+            return await InsertOrUpdateAsync(prOrder, "http://localhost:60064/api/bshop/PostOrder", "POST");
         }
 
         internal static async Task<string> UpdateOrderAsync(clsOrder prOrder)
         {
-            return await InsertOrUpdateAsync(prOrder, "http://localhost:60064/api/bshop/PutInventory", "PUT");
+            return await InsertOrUpdateAsync(prOrder, "http://localhost:60064/api/bshop/PutOrder", "PUT");
         }
 
         private async static Task<string> InsertOrUpdateAsync<TItem>(TItem prItem, string prUrl, string prRequest)

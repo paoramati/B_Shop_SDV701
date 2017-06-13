@@ -20,11 +20,13 @@ namespace BShopUniversal
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class pgItemDetail : Page
+    public sealed partial class pgPlaceOrder : Page
     {
         private clsInventory _Inventory;
 
         private clsOrder _Order;
+
+        private string _OrderDetails;
 
         public delegate void LoadInventoryControlDelegate(clsInventory prInventory);
         public void DispatchInventoryForm(clsInventory prInventory)
@@ -38,7 +40,7 @@ namespace BShopUniversal
             UpdatePage(prInventory);
         }
 
-        public pgItemDetail()
+        public pgPlaceOrder()
         {
             this.InitializeComponent();
         }
@@ -47,6 +49,11 @@ namespace BShopUniversal
         {
             base.OnNavigatedTo(e);
             DispatchInventoryForm(e.Parameter as clsInventory);
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
         }
 
         private void RunClothing(clsInventory prInventory)
@@ -78,136 +85,62 @@ namespace BShopUniversal
             _Order.customerName = txtCustomerName.Text;
             _Order.customerEmail = txtCustomerEmail.Text;
             _Order.orderDateTime = DateTime.Now;
+
+            _Inventory.quantity = _Inventory.quantity - _Order.orderQuantity;
+
+            _OrderDetails = "Do you want to make this order?"; //(Total: $" + (_Order.orderQuantity * _Order.priceAtOrder) + ")"; 
         }
-
-        //private void SavePage()
-        //{
-
-        //}
-
-        //private void CreateOrder()
-        //{
-
-        //}
 
         private bool IsValid()
         {
             bool lcResult = true;
             if (string.IsNullOrEmpty(txtCustomerName.Text))
-            {
-                //_ValidationErrors.Add("Description must not be empty");
                 lcResult = false;
-            }
             if (string.IsNullOrEmpty(txtCustomerEmail.Text))
-            {
-                //_ValidationErrors.Add("Description must not be empty");
                 lcResult = false;
-            }
             if (!clsBShopUtility.CheckIntValue(txtOrderQuantity.Text, 0))
-            {
-                //_ValidationErrors.Add("Quantity must be a number greater than 0");
                 lcResult = false;
-            }
+            //check whether current stock is enough
+            if (int.Parse(txtOrderQuantity.Text) > _Inventory.quantity)
+                lcResult = false;
             return lcResult;
+        }
+
+        private async void btnPlaceOrder_Click(object sender, RoutedEventArgs e)
+        {
+            BshopDialog lcDialog = new BshopDialog();
+            var lcResult = await lcDialog.ShowAsync();
+            if (lcResult == ContentDialogResult.Primary)
+            {
+                if (IsValid())
+                {
+                    PushData();
+                    try
+                    {
+                        await ServiceClient.UpdateInventoryAsync(_Inventory);
+                        lcDialog.Content = await ServiceClient.InsertOrderAsync(_Order);
+                        await lcDialog.ShowAsync();
+                        Frame.GoBack();
+                    }
+                    catch (Exception ex)
+                    {
+                        lcDialog.Content = ex.Message;
+                        lcDialog.SecondaryButtonText = "";
+                        await lcDialog.ShowAsync();
+                    }
+                }
+                else
+                {
+                    lcDialog.Content = "This form has errors";
+                    lcDialog.SecondaryButtonText = "";
+                    await lcDialog.ShowAsync();
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
         }
-
-        private async void btnPlaceOrder_Click(object sender, RoutedEventArgs e)
-        {
-            if (IsValid())
-            {
-                var confirmDlg = new ContentDialog
-                {
-                    Title = "Confirm Order",
-                    Content = "Do you want to order this item?",
-                    PrimaryButtonText = "OK",
-                    SecondaryButtonText = "Cancel"
-                };
-                var lcResult = await confirmDlg.ShowAsync();
-
-                if (lcResult == ContentDialogResult.Primary)
-                {
-                    try
-                    {
-                        PushData();
-                        Frame.Navigate(typeof(pgConfirmOrder));
-                    }
-                    catch (Exception ex)
-                    {
-                        ContentDialog excep = new ContentDialog()
-                        {
-                            
-                            Content = ex.Message + "\n" + ex.StackTrace,
-                            PrimaryButtonText = "OK"
-                            
-                        };
-                        await excep.ShowAsync();
-                    }
-                    
-                }
-                else
-                    if (lcResult == ContentDialogResult.Secondary)
-                {
-
-                }
-
-
-            }
-            else
-            {
-                ContentDialog invalid = new ContentDialog()
-                {
-                    Content = "This form has errors",
-                    //Content = ex.Message + "\n" + ex.StackTrace,
-                    PrimaryButtonText = "OK"
-
-                };
-                await invalid.ShowAsync();
-            }
-
-
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        //private async void DisplayConfirmDialog()
-        //{
-        //    ContentDialog confirmOrderDialog = new ContentDialog()
-        //    {
-        //        Title = "Confirm Order",
-        //        Content = "Do you want to order this item?",
-        //        PrimaryButtonText = "OK",
-        //        SecondaryButtonText = "Cancel"
-        //    };
-        //    //confirmOrderDialog.PrimaryButtonClick += ConfirmOrderDialog_PrimaryButtonClick;
-        //    //confirmOrderDialog.SecondaryButtonClick += ConfirmOrderDialog_SecondaryButtonClick;
-        //    var lcResult = await confirmOrderDialog.ShowAsync();       
-
-        //    if (lcResult == ContentDialogResult.Primary)
-        //    {
-
-        //    }
-
-            
-        //}
-
-        //private void ConfirmOrderDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        //{
-        //    sender.Hide();
-        //}
-
-        //private void ConfirmOrderDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        //{
-        //    sender.Hide();
-        //    //PushData();
-        //}
     }
 }
