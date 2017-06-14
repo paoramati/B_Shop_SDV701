@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿///Title:   clsBShopUtility.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Utility class for validating data inputs
 namespace BShop_Management
 {
     public static class clsBShopUtility

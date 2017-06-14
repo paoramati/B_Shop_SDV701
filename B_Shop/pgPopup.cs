@@ -1,4 +1,7 @@
-﻿using System;
+﻿///Title:   pgPopup.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: IPop up for BShop windows formusing System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

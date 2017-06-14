@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿///Title:   ServiceClient.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Calls server SelfHost to make database operations
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;

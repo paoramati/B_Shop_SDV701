@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿///Title:   Program.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Main program for Bshop SelfHost server program
+using System;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
 

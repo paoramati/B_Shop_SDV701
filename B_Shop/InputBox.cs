@@ -1,11 +1,9 @@
-﻿using System;
+﻿///Title:   InputBox.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Input Box pop up for BShop windows form
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BShop_Management
@@ -17,7 +15,6 @@ namespace BShop_Management
         public string Answer
         {
             get { return _Answer; }
-            //set { mAnswer = value; }
         }
 
         public InputBox(string question, List<string> options)

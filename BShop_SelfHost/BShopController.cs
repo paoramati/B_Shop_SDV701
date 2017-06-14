@@ -209,7 +209,7 @@ namespace BShop_SelfHost
         }
 
         public string PutOrder(clsOrder prOrder)
-        {  // update order
+        {  // update order - unfinished
             try
             {
                 int lcRecCount = clsDbConnection.Execute("UPDATE tblOrder SET " +

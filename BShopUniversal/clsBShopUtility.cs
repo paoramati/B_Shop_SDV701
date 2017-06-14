@@ -1,4 +1,7 @@
-﻿using System;
+﻿///Title:   clsBShopUtility.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Utility class for validating data inputs
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

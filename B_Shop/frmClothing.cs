@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
+﻿///Title:   frmClothing.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Subclass of frmInventory, displays added clothing fields
 namespace BShop_Management
 {
-    public sealed partial class frmClothing : BShop_Management.frmInventory
+    public sealed partial class frmClothing : frmInventory
     {
         //Singleton
         public static readonly frmClothing Instance = new frmClothing();

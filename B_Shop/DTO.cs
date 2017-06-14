@@ -1,8 +1,9 @@
-﻿using System;
+﻿///Title:   DTO.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Data Transfer Object for BShop
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BShop_Management
 {
