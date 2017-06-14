@@ -1,8 +1,7 @@
-﻿///
-///
-///
-
-
+﻿///Title:   pgPlaceOrder.xaml.cs
+///Author:  Brandon Paul
+///Date:    
+///Purpose: Display items details and customer orders items
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml;
@@ -80,7 +79,7 @@ namespace BShopUniversal
             _Order.customerEmail = txtCustomerEmail.Text;
             _Order.orderDateTime = DateTime.Now;
 
-            _Inventory.quantity = _Inventory.quantity - _Order.orderQuantity;
+            _Inventory.quantity = _Inventory.quantity - _Order.orderQuantity;       //NB: very clumsy, how to solve with server code?
         }
 
         private bool IsValid()
@@ -95,7 +94,6 @@ namespace BShopUniversal
             //check whether current stock is enough
             if (int.Parse(txtOrderQuantity.Text) > _Inventory.quantity)
             {
-
                 lcResult = false;
             }
             return lcResult;
