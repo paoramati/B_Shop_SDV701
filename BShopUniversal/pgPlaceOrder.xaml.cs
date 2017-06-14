@@ -26,8 +26,6 @@ namespace BShopUniversal
 
         private clsOrder _Order;
 
-        private string _OrderDetails;
-
         public delegate void LoadInventoryControlDelegate(clsInventory prInventory);
         public void DispatchInventoryForm(clsInventory prInventory)
         {
@@ -87,8 +85,6 @@ namespace BShopUniversal
             _Order.orderDateTime = DateTime.Now;
 
             _Inventory.quantity = _Inventory.quantity - _Order.orderQuantity;
-
-            _OrderDetails = "Do you want to make this order?"; //(Total: $" + (_Order.orderQuantity * _Order.priceAtOrder) + ")"; 
         }
 
         private bool IsValid()

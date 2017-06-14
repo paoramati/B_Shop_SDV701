@@ -17,6 +17,13 @@ namespace BShop_Management
                 (await lcHttpClient.GetStringAsync("http://localhost:60064/api/bshop/GetBranchCodes/"));
         }
 
+        internal async static Task<string> GetInventoryDescriptionAsync(string prDescription)
+        {
+            using (HttpClient lcHttpClient = new HttpClient())
+                return JsonConvert.DeserializeObject<string>
+                (await lcHttpClient.GetStringAsync("http://localhost:60064/api/bshop/GetInventoryDescription?description=" + prDescription));
+        }
+
         internal async static Task<clsBranch> GetBranchAsync(string prBranchCode)
         {
             using (HttpClient lcHttpClient = new HttpClient())

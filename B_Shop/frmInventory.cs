@@ -71,11 +71,25 @@ namespace BShop_Management
                 if (IsValid())
                 {
                     PushData();
-                    if(_Inventory.itemID == 0)      //if item is new
-                        MessageBox.Show(await ServiceClient.InsertInventoryAsync(_Inventory));
+                    if(_Inventory.itemID == 0)       //if item is new
+                    {
+                        if (!await IsDescriptionTaken())    //if item description is not taken
+                        {
+                            MessageBox.Show(await ServiceClient.InsertInventoryAsync(_Inventory));
+                            Close();
+                        }
+                        else
+                        {
+                            //MessageBox.Show("Item description is already taken");
+                            MessageBox.Show(String.Join("\n", _ValidationErrors), "There are errors with this form:");
+
+                        }
+                    }
                     else
+                    {
                         MessageBox.Show(await ServiceClient.UpdateInventoryAsync(_Inventory));
-                    Close();
+                        Close();
+                    }
                 }
                 else
                 {
@@ -112,6 +126,18 @@ namespace BShop_Management
                 lcResult = false;
             }
             return lcResult;
+        }
+
+        private async Task<bool> IsDescriptionTaken()
+        {
+            if (await ServiceClient.GetInventoryDescriptionAsync(_Inventory.description) == null)
+                return false;
+            else
+            {
+                _ValidationErrors.Add("Item description is already taken");
+                return true;
+
+            }
         }
     }
 
