@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿///Title:   frmOrderDetails.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Displays details for a particular order 
+using System;
 using System.Windows.Forms;
 
 namespace BShop_Management
@@ -24,7 +21,6 @@ namespace BShop_Management
 
         public static void Run(clsOrder prOrder)
         {
-            //Instance.SetDetails(prOrder);
             frmOrderDetails lcOrderDetailsForm;
             lcOrderDetailsForm = new frmOrderDetails();
             lcOrderDetailsForm.refreshFormFromDB(prOrder.orderID);

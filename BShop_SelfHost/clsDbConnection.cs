@@ -1,11 +1,12 @@
-﻿using System;
+﻿///Title:   clsDbConnection.cs
+///Author:  Matthis Otto
+///Date:    14.6.17
+///Purpose: Database connection utility class
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BShop_SelfHost
 {

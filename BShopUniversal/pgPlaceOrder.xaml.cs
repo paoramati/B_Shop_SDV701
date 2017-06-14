@@ -1,6 +1,6 @@
 ﻿///Title:   pgPlaceOrder.xaml.cs
 ///Author:  Brandon Paul
-///Date:    
+///Date:    14.6.17
 ///Purpose: Display items details and customer orders items
 using System;
 using System.Collections.Generic;
@@ -21,6 +21,11 @@ namespace BShopUniversal
 
         private clsOrder _Order;
 
+        public pgPlaceOrder()
+        {
+            this.InitializeComponent();
+        }
+
         public delegate void LoadInventoryControlDelegate(clsInventory prInventory);
         public void DispatchInventoryForm(clsInventory prInventory)
         {
@@ -31,11 +36,6 @@ namespace BShopUniversal
             };
             _InventoryForm[prInventory.category].DynamicInvoke(prInventory);
             UpdatePage(prInventory);
-        }
-
-        public pgPlaceOrder()
-        {
-            this.InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -91,8 +91,7 @@ namespace BShopUniversal
                 lcResult = false;
             if (!clsBShopUtility.CheckIntValue(txtOrderQuantity.Text, 0))
                 lcResult = false;
-            //check whether current stock is enough
-            if (int.Parse(txtOrderQuantity.Text) > _Inventory.quantity)
+            if (int.Parse(txtOrderQuantity.Text) > _Inventory.quantity)            //check whether current stock is enough
             {
                 lcResult = false;
             }

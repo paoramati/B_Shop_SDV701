@@ -1,12 +1,9 @@
-﻿using System;
+﻿///Title:   frmBranch.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Displays details and inventory for a branch for the bshop windows forms application
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Common.CommandTrees.ExpressionBuilder;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BShop_Management
@@ -95,7 +92,6 @@ namespace BShop_Management
                 {
                     if (lcInventory != null)    //valid inventory created?
                     {
-                        //insert some condition to test if a new something is being made?
                         lcInventory.branchCode = _Branch.branchCode;
                         frmInventory.DispatchInventoryForm(lcInventory);
                         if (!string.IsNullOrEmpty(lcInventory.description)) // not cancelled?
@@ -136,11 +132,6 @@ namespace BShop_Management
             }
         }
 
-        private void frmBranch_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private async void btnDeleteInventory_Click(object sender, EventArgs e)
         {
             int lcIndex = lstBoxInventory.SelectedIndex;
@@ -148,14 +139,9 @@ namespace BShop_Management
             if (lcIndex >= 0 && MessageBox.Show("are you sure?", "deleting inventory", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 clsInventory lcInventory = lstBoxInventory.SelectedValue as clsInventory;
-                //clsInventory lcWork = lstBoxInventory.SelectedItem as clsInventory;
-                //MessageBox.Show(lcWork.ArtistName);
                 try
                 {
-                    //MessageBox.Show("test itemID " + lcInventory.itemID);
                     MessageBox.Show(await ServiceClient.DeleteInventoryAsync(lcInventory.itemID));
-
-                    //MessageBox.Show(await ServiceClient.DeleteArtworkAsync(lstWorks.SelectedItem as clsAllWork));
                     refreshFormFromDB(_Branch.branchCode);
                     frmMain.Instance.UpdateDisplay();
                 }

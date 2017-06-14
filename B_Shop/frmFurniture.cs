@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
+﻿///Title:   frmFurniture.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Subclass of frmInventory, displays added furniture fields
 namespace BShop_Management
 {
-    public sealed partial class frmFurniture : BShop_Management.frmInventory
+    public sealed partial class frmFurniture : frmInventory
     {
         //Singleton
         public static readonly frmFurniture Instance = new frmFurniture();
