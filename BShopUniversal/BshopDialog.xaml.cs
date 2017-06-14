@@ -17,12 +17,20 @@ using Windows.UI.Xaml.Navigation;
 
 namespace BShopUniversal
 {
-    public sealed partial class cdConfirm : ContentDialog
+    public sealed partial class BshopDialog : ContentDialog
     {
-        public cdConfirm()
+        public BshopDialog()
         {
             this.InitializeComponent();
+            SetDetails();
+        }
 
+        private void SetDetails()
+        {
+            Title = "Confirm Order";
+            Content = "Do you want to make this order?";
+            PrimaryButtonText = "OK";
+            SecondaryButtonText = "Cancel";
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -31,8 +39,6 @@ namespace BShopUniversal
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            this.Hide();
         }
-
     }
 }

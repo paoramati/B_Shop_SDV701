@@ -48,6 +48,17 @@ namespace BShop_SelfHost
             return lcInventory;
         }
 
+        public string GetInventoryDescription(string description)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(1);
+            par.Add("description", description);
+            DataTable lcResult = clsDbConnection.GetDataTable("SELECT itemID FROM tblInventory WHERE description = @description", par);
+            if (lcResult.Rows.Count > 0)
+                return "Item exists with that description";
+            else
+                return null;
+        }
+
         private clsInventory dataRow2Inventory(DataRow prDataRow)
         {
             return new clsInventory()
@@ -183,11 +194,11 @@ namespace BShop_SelfHost
             try
             {
                 int lcRecCount = clsDbConnection.Execute("INSERT INTO tblOrder " +
-                "() " +
-                "VALUES ()",
+                "(itemID, priceAtOrder, orderQuantity, orderDateTime, customerName, customerEmail) " +
+                "VALUES (@itemID, @priceAtOrder, @orderQuantity, @orderDateTime, @customerName, @customerEmail)",
                 prepareOrderParameters(prOrder));
                 if (lcRecCount == 1)
-                    return "One order item inserted";
+                    return "Order confirmed";
                 else
                     return "Unexpected order insert count: " + lcRecCount;
             }
@@ -222,9 +233,11 @@ namespace BShop_SelfHost
             Dictionary<string, object> par = new Dictionary<string, object>(11);
             par.Add("orderID", prOrder.orderID);
             par.Add("itemID", prOrder.itemID);
-
+            par.Add("priceAtOrder", prOrder.priceAtOrder);
             par.Add("orderQuantity", prOrder.orderQuantity);
-
+            par.Add("orderDateTime", prOrder.orderDateTime);
+            par.Add("customerName", prOrder.customerName);
+            par.Add("customerEmail", prOrder.customerEmail);
             return par;
         }
 

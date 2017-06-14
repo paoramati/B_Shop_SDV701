@@ -7,31 +7,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="B SHOP ONLINE" VerticalAlignment="Top" Height="39" Width="293" FontSize="24"/>
-        <TextBlock x:Name="lblDescription" HorizontalAlignment="Left" Margin="10,94,0,0" TextWrapping="Wrap" Text="txtDescription" VerticalAlignment="Top" Width="340" FontSize="22" Height="50" FontStyle="Italic"/>
-        <TextBlock x:Name="lblPricePerItem" HorizontalAlignment="Left" Margin="18,156,0,0" TextWrapping="Wrap" Text="Price Per Item ($):" VerticalAlignment="Top"/>
-        <TextBlock x:Name="lblQuantityInStock" HorizontalAlignment="Left" Margin="18,194,0,0" TextWrapping="Wrap" Text="Quantity In Stock:" VerticalAlignment="Top"/>
-        <Border Margin="7,388,13,87">
-            <Grid BorderThickness="1">
-                <TextBlock x:Name="lblOrderQuantity" HorizontalAlignment="Left" Margin="9,55,0,0" TextWrapping="Wrap" Text="Quantity:" VerticalAlignment="Top"/>
-                <TextBlock x:Name="lblCustomerName" HorizontalAlignment="Left" Margin="9,92,0,0" TextWrapping="Wrap" Text="Your Name:" VerticalAlignment="Top"/>
-                <TextBlock x:Name="lblCustomerEmail" HorizontalAlignment="Left" Margin="9,131,0,0" TextWrapping="Wrap" Text="Your Email:" VerticalAlignment="Top"/>
-                <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="33" Margin="13,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" FontSize="20" FontStyle="Italic">
-                    <Run Text="Enter "/>
-                    <Run Text="Order Details:"/>
-                </TextBlock>
-                <TextBox x:Name="txtOrderQuantity" HorizontalAlignment="Left" Height="20" Margin="99,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81"/>
-                <TextBox x:Name="txtCustomerName" HorizontalAlignment="Left" Height="20" Margin="99,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218"/>
-                <TextBox x:Name="txtCustomerEmail" HorizontalAlignment="Left" Height="20" Margin="99,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218"/>
-
-            </Grid>
-        </Border>
-        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="20" Margin="144,150,0,0" TextWrapping="Wrap" Text="txtPrice" VerticalAlignment="Top" Width="131" IsReadOnly="True" BorderThickness="1"/>
-        <TextBox x:Name="txtStockQuantity" HorizontalAlignment="Left" Height="20" Margin="144,190,0,0" TextWrapping="Wrap" Text="txtStockQuantity" VerticalAlignment="Top" Width="131" IsReadOnly="True" BorderThickness="1"/>
-        <Button x:Name="btnPlaceOrder" Content="Place Order" HorizontalAlignment="Left" Margin="106,565,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.135,-0.156" Height="44" Width="101" FontWeight="Bold"/>
-        <TextBlock x:Name="lblCategory" HorizontalAlignment="Left" Margin="122,50,0,0" TextWrapping="Wrap" Text="lblCategory" VerticalAlignment="Top" Width="125" FontSize="18" Height="50"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="226,565,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.135,-0.156" Height="44" Width="101" Click="btnCancel_Click"/>
+        <TextBlock x:Name="lblDescription" HorizontalAlignment="Left" Margin="10,98,0,0" TextWrapping="Wrap" Text="lblDescription" VerticalAlignment="Top" Width="340" FontSize="20" Height="36"/>
+        <Button x:Name="btnHome" Content="Home" HorizontalAlignment="Left" Margin="126,575,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.135,-0.156" Height="44" Width="101" FontWeight="Bold" Click="btnHome_Click"/>
+        <TextBlock x:Name="lblOrderQuantity" HorizontalAlignment="Left" Margin="13,234,0,0" TextWrapping="Wrap" Text="Quantity:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblCustomerName" HorizontalAlignment="Left" Margin="12,158,0,0" TextWrapping="Wrap" Text="Your Name:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblCustomerEmail" HorizontalAlignment="Left" Margin="13,198,0,0" TextWrapping="Wrap" Text="Your Email:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtOrderQuantity" HorizontalAlignment="Left" Height="20" Margin="103,228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" IsReadOnly="True"/>
+        <TextBox x:Name="txtCustomerName" HorizontalAlignment="Left" Height="20" Margin="102,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" IsReadOnly="True"/>
+        <TextBox x:Name="txtCustomerEmail" HorizontalAlignment="Left" Height="20" Margin="103,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" IsReadOnly="True"/>
+        <TextBlock x:Name="lblDescription_Copy" HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" Text="Order Confirmation" VerticalAlignment="Top" Width="340" FontSize="20" Height="36" FontStyle="Italic"/>
+        <TextBlock x:Name="lblOrderQuantity_Copy" HorizontalAlignment="Left" Margin="13,298,0,0" TextWrapping="Wrap" Text="Total ($):" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <TextBox x:Name="txtTotal" HorizontalAlignment="Left" Height="20" Margin="103,292,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" IsReadOnly="True" FontSize="20"/>
 
     </Grid>
 </Page>

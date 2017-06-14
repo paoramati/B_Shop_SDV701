@@ -95,8 +95,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="cdConfirm.xaml.cs">
-      <DependentUpon>cdConfirm.xaml</DependentUpon>
+    <Compile Include="BshopDialog.xaml.cs">
+      <DependentUpon>BshopDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="clsBShopUtility.cs" />
     <Compile Include="DTO.cs" />
@@ -107,8 +107,8 @@
     <Compile Include="pgConfirmOrder.xaml.cs">
       <DependentUpon>pgConfirmOrder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pgItemDetail.xaml.cs">
-      <DependentUpon>pgItemDetail.xaml</DependentUpon>
+    <Compile Include="pgPlaceOrder.xaml.cs">
+      <DependentUpon>pgPlaceOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="pgMain.xaml.cs">
       <DependentUpon>pgMain.xaml</DependentUpon>
@@ -143,7 +143,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="cdConfirm.xaml">
+    <Page Include="BshopDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,7 +155,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pgItemDetail.xaml">
+    <Page Include="pgPlaceOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

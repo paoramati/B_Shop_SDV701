@@ -70,12 +70,12 @@ namespace BShopUniversal
             if (lstBoxInventory.SelectedItem == null)
                 txtBlockMsg.Text = "Please select an item";
             else
-                Frame.Navigate(typeof(pgItemDetail), (clsInventory)lstBoxInventory.SelectedValue);
+                Frame.Navigate(typeof(pgPlaceOrder), (clsInventory)lstBoxInventory.SelectedValue);
         }
 
         private void lstBoxInventory_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof(pgItemDetail), (clsInventory)lstBoxInventory.SelectedValue);
+            Frame.Navigate(typeof(pgPlaceOrder), (clsInventory)lstBoxInventory.SelectedValue);
         }
     }
 }

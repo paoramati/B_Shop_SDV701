@@ -27,11 +27,6 @@ namespace BShopUniversal
             this.InitializeComponent();
         }
 
-        //private void button_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
-
         private async void B_Shop_Loaded(object sender, RoutedEventArgs e)
         {
             try
