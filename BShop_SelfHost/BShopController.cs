@@ -1,9 +1,10 @@
-﻿using System;
+﻿///Title:   BShopController.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Controller class that handles server requests to access database
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace BShop_SelfHost
