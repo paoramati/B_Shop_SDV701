@@ -79,11 +79,7 @@ namespace BShop_Management
                             Close();
                         }
                         else
-                        {
-                            //MessageBox.Show("Item description is already taken");
                             MessageBox.Show(String.Join("\n", _ValidationErrors), "There are errors with this form:");
-
-                        }
                     }
                     else
                     {
@@ -92,9 +88,7 @@ namespace BShop_Management
                     }
                 }
                 else
-                {
                     MessageBox.Show(String.Join("\n", _ValidationErrors), "There are errors with this form:");
-                }
             }
             catch (Exception ex)
             {
@@ -136,7 +130,6 @@ namespace BShop_Management
             {
                 _ValidationErrors.Add("Item description is already taken");
                 return true;
-
             }
         }
     }

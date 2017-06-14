@@ -53,14 +53,10 @@ namespace BShop_SelfHost
             Dictionary<string, object> par = new Dictionary<string, object>(1);
             par.Add("description", description);
             DataTable lcResult = clsDbConnection.GetDataTable("SELECT itemID FROM tblInventory WHERE description = @description", par);
-            //List<clsInventory> lcInventory = new List<clsInventory>();
             if (lcResult.Rows.Count > 0)
                 return "Item exists with that description";
             else
                 return null;
-            //foreach (DataRow dr in lcResult.Rows)
-            //    lcInventory.Add(dataRow2Inventory(dr));
-            //return lcInventory;
         }
 
         private clsInventory dataRow2Inventory(DataRow prDataRow)
