@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿///Title:   Program.cs
+///Author:  Brandon Paul
+///Date:    14.6.17
+///Purpose: Main program for BShop windows forms program
+using System;
 using System.Windows.Forms;
 
-namespace B_Shop
+namespace BShop_Management
 {
     static class Program
     {
@@ -16,7 +17,7 @@ namespace B_Shop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmItem());
+            Application.Run(frmMain.Instance);
         }
     }
 }

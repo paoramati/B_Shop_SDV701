@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace B_Shop.Properties
+namespace BShop_Management.Properties
 {
 
 
